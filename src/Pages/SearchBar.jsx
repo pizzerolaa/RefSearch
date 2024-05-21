@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaUser } from "react-icons/fa";
 import { IoEarthOutline } from "react-icons/io5";
-import './App.css';
+import './CSS/SearchBar.css';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
