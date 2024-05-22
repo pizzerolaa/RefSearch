@@ -1,0 +1,27 @@
+.navbar{
+    background-color: #ffffff;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: left;
+}
+
+.navbar-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.navbar-login button{
+    width: 10%;
+    max-width: 10px;
+    padding: 0.5rem;
+    border: none;
+    background-color: rgb(75, 179, 121);
+    color: white;
+    font-size: 1rem;
+    font-weight: 900;
+    cursor: pointer;
+}
