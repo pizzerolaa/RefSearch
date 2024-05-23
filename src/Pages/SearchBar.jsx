@@ -16,7 +16,7 @@ const SearchBar = () => {
   };
 
   return (
-    <body>
+    <div className="searchBar">
       <header className='header-main'>
         <div className='header-user'>
           <button><FaUser /></button>
@@ -55,7 +55,7 @@ const SearchBar = () => {
             {/* {selectedTopic && <div>Selected Topic: {selectedTopic}</div>} */}
         </div>
       </div>
-    </body>
+    </div>
   );
 };
 

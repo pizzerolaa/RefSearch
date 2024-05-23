@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: hsl(0, 54%, 97%);
+  background-color: #f2f1ec;
 }
 
 .header-main {
@@ -19,7 +19,7 @@ body {
 }
 
 .header-user button {
-  background-color: rgb(32, 109, 83);
+  background-color: #365b6d;
   color: white;
   border: none;
   cursor: pointer;
@@ -35,7 +35,7 @@ body {
 }
 
 .header-lang button {
-  background-color: rgb(32, 109, 83);
+  background-color: #365b6d;
   color: white;
   border: none;
   cursor: pointer;
@@ -81,7 +81,7 @@ body {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: rgb(32, 109, 83);
+  color: #365b6d;
   text-align: center;
 }
 
@@ -96,7 +96,7 @@ body {
   padding: 0.5rem;
   margin: 1rem 0;
   border: none;
-  background-color: rgb(75, 179, 121);
+  background-color: #6c9286;;
   color: white;
   font-size: 1rem;
   font-weight: 900;
@@ -110,7 +110,7 @@ body {
   width: 10%;
   padding: 0.5rem;
   border: none;
-  background-color: rgb(75, 179, 121);
+  background-color: #6c9286;;
   color: white;
   font-size: 1rem;
   font-weight: 900;
@@ -155,7 +155,7 @@ body {
   padding: 0.5rem;
   border: none;
   border-radius: 40px;
-  background-color: rgb(32, 109, 83);
+  background-color: #365b6d;
   color: white;
   font-size: 1rem;
   font-weight: 900;
@@ -177,11 +177,15 @@ body {
   padding: 0.5rem;
   border: none;
   border-radius: 40px;
-  background-color: rgb(75, 179, 121);
+  background-color: #6c9286;;
   color: white;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   margin: 0.3rem 0;
+}
+
+.searchBar{
+  width: 100% !important;
 }
 
