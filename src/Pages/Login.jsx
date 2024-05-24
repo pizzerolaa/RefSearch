@@ -15,16 +15,16 @@ const Login = () => {
         
             <div className="login-container">
                 <form>
-                <input className="inputs" type="text" placeholder="correo@type.com" />
-                <input className="inputs" type="password" placeholder="Contraseña" />
-                <button className="inputs" type="submit">Ingresar</button>
-                <button className="inputs" type="submit">Registrar</button>
+                <input className="inputs" id='login-email' type="text" placeholder="correo@type.com" />
+                <input className="inputs" id='login-password' type="password" placeholder="Contraseña" />
+                <button className="inputs" id='login-signin' type="submit">Ingresar</button>
+                <button className="inputs" id='login-signup' type="submit">Registrar</button>
                 </form>
             </div>
 
             <div className='footer-lang'>
 
-                <button>
+                <button id='login-idioma'>
                     <IoEarthOutline />
                     <span>Idioma</span>
                 </button>
