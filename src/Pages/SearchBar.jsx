@@ -17,7 +17,7 @@ const SearchBar = () => {
 
   return (
     <div className="searchBar">
-      <header className='header-main'>
+      {/* <header className='header-main'>
         <div className='header-user'>
           <button><FaUser /></button>
         </div>
@@ -27,7 +27,7 @@ const SearchBar = () => {
             <span>Idioma</span>
           </button>
         </div>
-      </header>
+      </header> */}
 
       <div className='RefSearch-main'>
         <div className='rf-first'>
