@@ -1,15 +1,16 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "The RefSearch backend, this is amazing!!",
-  "main": "app.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "nodemon app.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
-  "author": "RefSearch",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
     "express": "^4.19.2",
     "mysql": "^2.18.1",
