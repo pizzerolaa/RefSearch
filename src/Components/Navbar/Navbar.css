@@ -1,27 +1,81 @@
 .navbar{
-    background-color: #ffffff;
-    color: white;
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: left;
+    background-color: #365B6D;
 }
-
+/* 
 .navbar-login{
-    display: flex;
+    display: contents;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
-    width: 100%;
+} */
+
+.navbar-functions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #365B6D;
+    margin-left: 10px;
 }
 
-.navbar-login button{
-    width: 10%;
-    max-width: 10px;
+.navbar-login img {
+    max-width: 90px;
     padding: 0.5rem;
+    /* margin: 10px; */
     border: none;
-    background-color: rgb(75, 179, 121);
-    color: white;
-    font-size: 1rem;
-    font-weight: 900;
+    cursor: pointer;
+}
+
+.navbar-idioma {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #365B6D;
+}
+
+.navbar-idioma button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2F1EC;
+    padding: 0.5rem;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.navbar-idioma img {
+    max-width: 30px;
+    /* padding: 0.5rem; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border: none;
+}
+
+.navbar-idioma p {
+    margin-left: 5px;
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #365B6D;
+}
+
+.navbar-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #365B6D;
+    padding: 10px;
+    margin-right: 30px;
+}
+
+.navbar-logo p {
+    font-size: 30px;
+    font-weight: bold;
+    color: #F2F1EC;
+    font-style: italic;
     cursor: pointer;
 }
