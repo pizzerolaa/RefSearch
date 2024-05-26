@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 .results-idioma {
@@ -9,6 +10,7 @@
     justify-content: center;
     align-items: end;
     margin-top: 20px;
+    width: 15%;
 }
 
 .results-idioma img {
@@ -26,13 +28,19 @@
     justify-content: center;
     align-items: center;
     margin: 40px;
-    background-color: #365b6d;
-    color: white;
+    background-color: #6c9286;
+    color: #f2f1ec;
     border: none;
     border-radius: 20px;
     padding: 0.5rem;
     cursor: pointer;
     font-size: 20px;
+    width: 100%;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+.results-idioma button:hover {
+    background-color: #365b6d;
 }
 
 .results-reflist {
@@ -40,6 +48,7 @@
     justify-content: center;
     align-items: start;
     margin-top: 20px;
+    width: 25%;
 }
 
 .results-reflist img {
@@ -57,24 +66,96 @@
     justify-content: center;
     align-items: center;
     margin: 40px;
-    background-color: #365b6d;
-    color: white;
+    background-color: #6c9286;
+    color: #f2f1ec;
     border: none;
     border-radius: 20px;
     padding: 0.5rem;
     cursor: pointer;
     font-size: 20px;
+    width: 100%;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+.results-reflist button:hover {
+    background-color: #365b6d;
 }
 
 .results-results {
     display: column;
     align-items: start;
     margin-top: 20px;
+    width: 60%;
 }
 
 .results-results h1 {
     margin: 20px;
+    margin-left: 0px;
     text-align: start;
     color: #365b6d;
     font-size: 70px;
+}
+
+.results-container {
+    display: column;
+    align-items: start;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.results-card {
+    display: column;
+}
+
+.results-card h2 {
+    margin: 20px;
+    text-align: start;
+    color: #365b6d;
+    font-size: 30px;
+    font-style: italic;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.results-card h2:hover {
+    color: #6c9286;
+}
+
+.results-content {
+    display: flex;
+    align-items: start;
+    margin-top: 20px;
+}
+
+.results-content img {
+    height: 30px;
+    margin: 5px;
+}
+
+.results-content button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    background-color: #365b6d;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+.results-content button:hover {
+    background-color: #6c9286;
+}
+
+.results-sumary {
+    width: 100%;
+}
+
+.results-sumary p {
+    margin: 5px;
+    text-align: start;
+    color: black;
+    font-size: 18px;
 }

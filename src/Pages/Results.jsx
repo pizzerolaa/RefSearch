@@ -15,51 +15,81 @@ const Results = () => {
                 </button>
             </div>
             <div className="results-results">
-                <h1>Arte Generativo</h1>
+                <h1>PromptPromptPrompt</h1>
                 <div className="results-container">
                     <div className="results-card">
                         <h2>Titulo del articulo</h2>
                         <div className="results-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <img src={Ref} alt="" />
+                            <div className="results-sumary">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            </div>
+                            <button>
+                                <img src={Ref} alt="" />
+                            </button>
                         </div>
                     </div>
                     <div className="results-card">
                         <h2>Titulo del articulo</h2>
                         <div className="results-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <img src={Ref} alt="" />
+                            <div className="results-sumary">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            </div>
+                            <button>
+                                <img src={Ref} alt="" />
+                            </button>
                         </div>
                     </div>
                     <div className="results-card">
                         <h2>Titulo del articulo</h2>
                         <div className="results-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <img src={Ref} alt="" />
+                            <div className="results-sumary">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            </div>
+                            <button>
+                                <img src={Ref} alt="" />
+                            </button>
                         </div>
                     </div>
                     <div className="results-card">
                         <h2>Titulo del articulo</h2>
                         <div className="results-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <img src={Ref} alt="" />
+                            <div className="results-sumary">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            </div>
+                            <button>
+                                <img src={Ref} alt="" />
+                            </button>
                         </div>
                     </div>
                     <div className="results-card">
                         <h2>Titulo del articulo</h2>
                         <div className="results-content">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
-                            <img src={Ref} alt="" />
+                            <div className="results-sumary">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            </div>
+                            <button>
+                                <img src={Ref} alt="" />
+                            </button>
                         </div>
                     </div>
                 </div>
