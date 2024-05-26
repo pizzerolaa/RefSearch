@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles/Prompts.css';
 import Redo from "../Components/Assets/redo.svg";
 
@@ -8,6 +9,7 @@ const Prompts = () => {
             <h1>
                 ¿Qué idea te agrada más?
             </h1>
+            <Link style={{textDecoration:'none'}} to='/results'>
             <div className="prompts-row1">
                 <button>
                     Historia del arte digital
@@ -27,6 +29,7 @@ const Prompts = () => {
             <button>
                 Arte y realidad virtual
             </button>
+            </Link>
             <div className="prompts-redo">
                 <button>
                     <img src={Redo} alt="" />

@@ -1,0 +1,77 @@
+import React from 'react';
+import './styles/Results.css';
+import { Link } from 'react-router-dom';
+import Globe from '../Components/Assets/globe-beish.svg';
+import Ref from '../Components/Assets/bookmark.svg';
+import Next from '../Components/Assets/arrowNext.svg';
+
+const Results = () => {
+    return (
+        <div className='results'>
+            <div className="results-idioma">
+                <button id='results-idioma'>
+                    <img src={Globe} alt="" />
+                    <span>Idioma</span>
+                </button>
+            </div>
+            <div className="results-results">
+                <h1>Arte Generativo</h1>
+                <div className="results-container">
+                    <div className="results-card">
+                        <h2>Titulo del articulo</h2>
+                        <div className="results-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <img src={Ref} alt="" />
+                        </div>
+                    </div>
+                    <div className="results-card">
+                        <h2>Titulo del articulo</h2>
+                        <div className="results-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <img src={Ref} alt="" />
+                        </div>
+                    </div>
+                    <div className="results-card">
+                        <h2>Titulo del articulo</h2>
+                        <div className="results-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <img src={Ref} alt="" />
+                        </div>
+                    </div>
+                    <div className="results-card">
+                        <h2>Titulo del articulo</h2>
+                        <div className="results-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <img src={Ref} alt="" />
+                        </div>
+                    </div>
+                    <div className="results-card">
+                        <h2>Titulo del articulo</h2>
+                        <div className="results-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque mollitia adipisci quis vel autem architecto! Odit, pariatur enim quia aspernatur nam nobis! Ab reiciendis dignissimos quas recusandae impedit aliquam quia.</p>
+                            <img src={Ref} alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="results-reflist">
+                <button id='results-reflist'>
+                    <span>Lista de Referencias</span>
+                    <img src={Next} alt="" />
+                </button>
+            </div>
+        </div>
+    );
+}
+
+export default Results;
