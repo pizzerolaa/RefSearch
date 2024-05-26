@@ -1,6 +1,5 @@
-// import logo from './logo.svg';
-import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
 import SearchBar from './Pages/SearchBar';
 import Navbar from './Components/Navbar/Navbar';
 import Login from './Pages/Login';
@@ -9,12 +8,12 @@ import Prompts from './Pages/Prompts';
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
-            <Route path="/" element={<SearchBar />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/prompts" element={<Prompts />} />
+          <Route path="/" element={<SearchBar />}  />
+          <Route path="/login" element={<Login />} />
+          <Route path="/prompts" element={<Prompts />} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -22,3 +21,4 @@ function App() {
 }
 
 export default App;
+

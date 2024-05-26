@@ -28,6 +28,10 @@
     cursor: pointer;
 }
 
+.navbar-login img:hover{
+    filter: brightness(500%);
+}
+
 .navbar-idioma {
     display: flex;
     justify-content: flex-end;
@@ -45,6 +49,10 @@
     border: none;
     cursor: pointer;
     border-radius: 30px;
+}
+
+.navbar-idioma button:hover{
+    background-color: white;
 }
 
 .navbar-idioma img {
