@@ -8,8 +8,8 @@ const port = 8800;
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
-    database: 'test',
+    password: '',
+    database: 'dbTest',
 });
 //if there is a authentication error
 // ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
