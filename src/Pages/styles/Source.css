@@ -1,0 +1,134 @@
+.source {
+    display: flex;
+    background-color: #f2f1ec;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.source button:hover {
+    background-color: #365b6d;
+}
+
+.source-idioma {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: stretch;
+    margin-top: 20px;
+    width: 15%;
+}
+
+.source-idioma img {
+    height: 30px;
+    margin: 5px;
+}
+
+.source-idioma span {
+    margin: 10px;
+    text-align: center;
+}
+
+.source-idioma button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+    background-color: #6c9286;
+    color: #f2f1ec;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 20px;
+    width: auto;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+.source-pdf {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin-top: 20px;
+    width: 15%;
+}
+
+.source-pdf img {
+    height: 30px;
+    margin: 5px;
+}
+
+.source-pdf span {
+    margin: 10px;
+    text-align: center;
+}
+
+.source-pdf button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+    background-color: #6c9286;
+    color: #f2f1ec;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 20px;
+    width: auto;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+.source-tab {
+    display: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 100px;
+}
+
+.source-tab h1 {
+    margin: 20px;
+    margin-left: 0px;
+    text-align: start;
+    color: #365b6d;
+    font-size: 50px;
+}
+
+.source-tab h2 {
+    margin: 20px;
+    text-align: start;
+    color: #365b6d;
+    font-size: 30px;
+}
+/* .source-info {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin-top: 20px;
+} */
+
+.source-info p {
+    margin: 5px;
+    text-align: start;
+    color: #365b6d;
+    font-size: 20px;
+}
+
+.source-tab button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+    margin-left: 0px;
+    background-color: #6c9286;
+    color: #f2f1ec;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 20px;
+    width: 300px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+}

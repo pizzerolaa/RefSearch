@@ -87,3 +87,7 @@
     font-style: italic;
     cursor: pointer;
 }
+
+.navbar-logo p:hover {
+    color: white;
+}

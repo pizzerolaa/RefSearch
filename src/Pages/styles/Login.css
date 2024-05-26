@@ -2,7 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
+
+.a {
+    margin: 0px;
+}
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -17,9 +21,9 @@ form{
     padding-bottom: 3rem;
 }
 
-.header-user button{
-    margin: 0px;
+.header-user img{
     margin-bottom: 10px;
+    height: 100px;
 }
 
 .header-user h1{
@@ -42,7 +46,7 @@ input.inputs{
 }
 
 button.inputs{
-    min-width: 350px;
+    min-width: 160px;
     padding: .7rem;
     margin: .5rem;
     border: none;
@@ -78,6 +82,15 @@ button.inputs:hover{
     display: column;
     align-items: center;
     justify-content: center;
+}
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .login-container button {

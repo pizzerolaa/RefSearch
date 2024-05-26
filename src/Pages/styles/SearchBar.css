@@ -123,6 +123,15 @@ body {
   min-width: 420px;
   height: 100%;
   margin-left: 15px;
+  color: white;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.rf-first-search input::placeholder{
+  color: #f2f1ec;
+  font-size: 20px;
+  margin-left: 5px;
 }
 
 .rf-first-search img{
@@ -131,10 +140,10 @@ body {
   cursor: pointer;
 }
 
-.rf-first input::placeholder {
+/* .rf-first input::placeholder {
   color: #f2f1ec;
   font-size: 20px;
-}
+} */
 
 .rf-first-enter {
   display: flex;

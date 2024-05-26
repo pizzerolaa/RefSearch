@@ -15,10 +15,10 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="navbar-idioma">
-                    <button id='navbar-idioma'>
+                    {/* <button id='navbar-idioma'>
                         <img src={idioma} alt="" />
                         <p>Idioma</p>
-                    </button>
+                    </button> */}
                 </div>
             </div>
             <link rel="stylesheet" href="" />

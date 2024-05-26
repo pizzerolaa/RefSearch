@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { FaUser } from "react-icons/fa";
 import { IoEarthOutline } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 import './styles/Login.css';
+import User from "../Components/Assets/user-blue.svg";
 
 const Login = () => {
 
@@ -10,25 +12,25 @@ const Login = () => {
         <div className="login">
             <div className="login-tab">
                 <div className='header-user'>
-                <button><FaUser /></button>
+                    <img src={User} alt="" />    
                 <h1>Iniciar Sesión</h1>
                 </div>
             
                 <div className="login-container">
-                    <form>
-                    <input className="inputs" id='login-email' type="text" placeholder="correo@type.com" />
-                    <input className="inputs" id='login-password' type="password" placeholder="Contraseña" />
-                    <button className="inputs" id='login-signin' type="submit">Ingresar</button>
-                    <button className="inputs" id='login-signup' type="submit">Registrar</button>
-                    </form>
+                        <input className="inputs" id='login-email' type="text" placeholder="correo@type.com" />
+                        <input className="inputs" id='login-password' type="password" placeholder="Contraseña" />
+                        <Link style={{textDecoration:'none'}} to='/'>
+                            <button className="inputs" id='login-signin' type="submit">Ingresar</button>
+                            <button className="inputs" id='login-signup' type="submit">Registrar</button>
+                        </Link>
                 </div>
 
                 <div className='footer-lang'>
 
-                    <button id='login-idioma'>
+                    {/* <button id='login-idioma'>
                         <IoEarthOutline />
                         <span>Idioma</span>
-                    </button>
+                    </button> */}
 
                 </div>
             </div>
