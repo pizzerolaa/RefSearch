@@ -6,6 +6,7 @@ import Login from './Pages/Login';
 import Prompts from './Pages/Prompts';
 import Results from './Pages/Results';
 import Source from './Pages/Source';
+import References from './Pages/References';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/prompts" element={<Prompts />} />
           <Route path="/results" element={<Results />} />
           <Route path="/source" element={<Source />} />
+          <Route path="/references" element={<References />} />
         </Routes>
       </BrowserRouter>
     </div>

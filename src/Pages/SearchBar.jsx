@@ -51,9 +51,9 @@ const SearchBar = () => {
           <h4>Ingresa tus palabras clave separadas por espacios</h4>
           <div className="rf-first-enter">
             <Link style={{textDecoration:'none'}} to='/prompts'>
-            <button>
-              <img src={Lupa} alt="" />
-            </button>
+              <button>
+                <img src={Lupa} alt="" />
+              </button>
             </Link>
           </div>
         </div>
@@ -61,9 +61,11 @@ const SearchBar = () => {
         <div className='rf-second'>
             <button>Descubre</button>
             <div className='rf-second-buttons'>
-              <button onClick={() => handleTopicSelect('Videojuegos en la salud')}>Videojuegos en la salud</button>
-              <button onClick={() => handleTopicSelect('Michael Jackson y Reina Isabel')}>Michael Jackson y Reina Isabel</button>
-              <button onClick={() => handleTopicSelect('Botanica forense (Policia)')}>Botanica forense (Policia)</button>
+              <Link style={{textDecoration:'none'}} to='/prompts'>
+                <button onClick={() => handleTopicSelect('Videojuegos en la salud')}>Videojuegos en la salud</button>
+                <button onClick={() => handleTopicSelect('Michael Jackson y Reina Isabel')}>Michael Jackson y Reina Isabel</button>
+                <button onClick={() => handleTopicSelect('Botanica forense (Policia)')}>Botanica forense (Policia)</button>
+              </Link>
             </div>
             {/* {selectedTopic && <div>Selected Topic: {selectedTopic}</div>} */}
         </div>

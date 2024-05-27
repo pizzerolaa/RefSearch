@@ -105,10 +105,12 @@ const Results = () => {
                 </div>
             </div>
             <div className="results-reflist">
-                <button id='results-reflist'>
-                    <span>Lista de Referencias</span>
-                    <img src={Next} alt="" />
-                </button>
+                <Link style={{textDecoration:'none'}} to='/references'>
+                    <button id='results-reflist'>
+                        <span>Lista de Referencias</span>
+                        <img src={Next} alt="" />
+                    </button>
+                </Link>
             </div>
         </div>
     );
