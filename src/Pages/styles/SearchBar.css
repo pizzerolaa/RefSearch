@@ -169,6 +169,10 @@ body {
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
+.rf-first-enter button:hover {
+  background-color: #6c9286;
+}
+
 .rf-first-login {
   display: flex;
   align-items: center;
@@ -237,6 +241,10 @@ body {
   font-weight: 700;
   cursor: pointer;
   margin: 0.3rem 0;
+}
+
+.rf-second-buttons button:hover {
+  background-color: #365b6d;
 }
 
 .searchBar{
