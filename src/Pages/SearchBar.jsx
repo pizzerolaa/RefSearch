@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { FaUser } from "react-icons/fa";
-import { IoEarthOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import './styles/SearchBar.css';
 import Plus from "../Components/Assets/plus.svg"
