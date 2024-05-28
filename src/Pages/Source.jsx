@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./styles/Source.css";
 import Globe from "../Components/Assets/globe-beish.svg";
 import Ref from "../Components/Assets/bookmark.svg";
@@ -34,9 +35,11 @@ const Source = () => {
                     <button>
                         <span>Ver más</span>
                     </button>
-                    <button>
-                        <span>Chat</span>
-                    </button>
+                    <Link style={{textDecoration:'none'}} to='/chat'>
+                        <button>
+                            <span>Chat</span>
+                        </button>
+                    </Link>
                 </div>
             </div>
             <div className="source-pdf">
