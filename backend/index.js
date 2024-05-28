@@ -1,46 +1,50 @@
-import express from 'express';
-import mysql from 'mysql';
+const express = require('express');
+const mysql = require('mysql');
+const cors = require('cors');
 
 const app = express();
-const port = 8800;
 
-//create connection
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'dbTest',
-});
-//if there is a authentication error
-// ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
-
-app.get('/', (req, res) => {
-    res.json("Welcome to the backend");
+    database: 'RefSear'
 });
 
-app.get('/books', (req, res) => {
-    const q = 'SELECT * FROM books';
-     db.query(q, (err, data) => {
-        if(err) return res.json(err);
-        return res.json(data);
-     })
+app.use(express.json());
+app.use(cors());
+
+app.get('/' , (req, res) => {
+    res.json('Hello World');
 });
 
-app.post('/books', (req, res) => {
-    const q = "INSERT INTO books (`title`, `description`, `cover`) VALUES (?)";
+app.get('/login', (req, res) => {
+    const q = 'SELECT * FROM login';
+    db.query(q, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(data);
+        }
+    })
+});
+
+app.post('/login', (req, res) => {
+    const q = 'INSERT INTO login (`username`, `password`) VALUES (?)';
     const values = [
-        "title from backend",
-        "desc from backend",
-        "cover pic from backend"
+        req.body.username,
+        req.body.password
     ];
-
     db.query(q, [values], (err, data) => {
-        if(err) return res.json(err);
-        return res.json("Book added successfully");
+        if (err) {
+            console.log(err);
+        } else {
+            res.json("Account add successfully");
+        }
     })
 });
 
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(8800, () => {
+    console.log('Server started on port 8800');
 });
