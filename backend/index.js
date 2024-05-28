@@ -1,6 +1,8 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
+const {getJson} = require('serpapi');
+require('dotenv').config();
 
 const app = express();
 
@@ -44,6 +46,25 @@ app.post('/login', (req, res) => {
     })
 });
 
+//Google Scholar
+// app.get('/search', (req, res) => {
+//     const query = req.query.q || 'biology'; // Puedes modificar esta línea para tomar un parámetro de consulta
+
+//     getJson({
+//         engine: "google_scholar",
+//         q: query,
+//         api_key: process.env.SERPAPI_API_KEY
+//     }, (json) => {
+//         if (json.error) {
+//             res.status(500).json({ error: json.error });
+//         } else {
+//             res.json(json.organic_results);
+//         }
+//     }).catch(err => {
+//         console.error("Error:", err);
+//         res.status(500).json({ error: "Failed to fetch data from SerpApi" });
+//     });
+// });
 
 app.listen(8800, () => {
     console.log('Server started on port 8800');
