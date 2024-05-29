@@ -181,12 +181,10 @@ body {
 
 }
 
-/* .rf-first-search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-} */
+.rf-first-search {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
 .rf-first-search input {
   width: 50%;
