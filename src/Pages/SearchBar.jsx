@@ -74,9 +74,9 @@ const SearchBar = () => {
             <button>Descubre</button>
             <div className='rf-second-buttons'>
               <Link style={{textDecoration:'none'}} to='/prompts'>
-                <button onClick={() => handleTopicSelect('Videojuegos en la salud')}>Videojuegos en la salud</button>
-                <button onClick={() => handleTopicSelect('Michael Jackson y Reina Isabel')}>Michael Jackson y Reina Isabel</button>
-                <button onClick={() => handleTopicSelect('Botanica forense (Policia)')}>Botanica forense (Policia)</button>
+                <button>Datos intersantes sobre ciencia</button>
+                <button>Busca información nueva</button>
+                <button>Informate sobre las nuevas tecnologías</button>
               </Link>
             </div>
             {/* {selectedTopic && <div>Selected Topic: {selectedTopic}</div>} */}
