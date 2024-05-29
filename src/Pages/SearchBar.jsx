@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './styles/SearchBar.css';
 import Plus from "../Components/Assets/plus.svg"
 import Lupa from "../Components/Assets/lupa.svg"
@@ -7,15 +8,30 @@ import Lupa from "../Components/Assets/lupa.svg"
 //on-LOAD
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedTopic, setSelectedTopic] = useState('');
-
-  const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
 
   const handleTopicSelect = (topic) => {
     setSelectedTopic(topic);
+  };
+
+  const [keyWords, setKeyWords] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: keyWords.split(',') });
+    } catch (error) {
+      console.error('Error fetching prompts: ', error);
+    }
+  }
+
+  const handleSearch_2 = async () => {
+    try {
+      navigate('/prompts');
+    }
+    catch (error) {
+      console.error('Error fetching prompts: ', error);
+    }
   };
 
   return (
@@ -38,21 +54,19 @@ const SearchBar = () => {
           <div className='rf-first-search'>
             <input
               type="text"
+              value={keyWords}
               placeholder="Tema en mente"
-              value={searchTerm}
-              onChange={handleInputChange}
+              onChange={(e) => setKeyWords(e.target.value)}
             />
-            <img onClick={() => handleTopicSelect('Tema en mente')} src={Plus} alt="" />
+            <img onClick={handleSearch} src={Plus} alt="" />
             {/* <button onClick={() => handleTopicSelect('Tema en mente')}>+</button> */}
           </div>
 
-          <h4>Ingresa tus palabras clave separadas por espacios</h4>
+          <h4>Ingresa tus palabras clave separadas por comas</h4>
           <div className="rf-first-enter">
-            <Link style={{textDecoration:'none'}} to='/prompts'>
-              <button>
+              <button onClick={handleSearch_2}>
                 <img src={Lupa} alt="" />
               </button>
-            </Link>
           </div>
         </div>
 
