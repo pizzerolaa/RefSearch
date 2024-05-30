@@ -8,63 +8,57 @@ import Lupa from "../Components/Assets/lupa.svg"
 //on-LOAD
 
 const SearchBar = () => {
-  const [selectedTopic, setSelectedTopic] = useState('');
 
-  const handleTopicSelect = (topic) => {
-    setSelectedTopic(topic);
-  };
-
-  const [keyWords, setKeyWords] = useState('');
+  const [inputFields, setInputFields] = useState([""]);
   const navigate = useNavigate();
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: keyWords.split(',') });
-    } catch (error) {
-      console.error('Error fetching prompts: ', error);
+  const handleAddField = () => {
+    if (inputFields.length < 5) {
+      setInputFields([...inputFields, ""]);
     }
-  }
+  };
 
-  const handleSearch_2 = async () => {
+  const handleInputChange = (index, event) => {
+    const values = [...inputFields];
+    values[index] = event.target.value;
+    setInputFields(values);
+  };
+
+  const handleButtonClick = async () => {
     try {
+      const concatenatedString = inputFields.join(",");
+      console.log(concatenatedString);
+      const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: concatenatedString });
+      console.log(response);
       navigate('/prompts');
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Error fetching prompts: ', error);
     }
   };
 
   return (
     <div className="searchBar">
-      {/* <header className='header-main'>
-        <div className='header-user'>
-          <button><FaUser /></button>
-        </div>
-        <div className='header-lang'>
-          <button>
-            <IoEarthOutline />
-            <span>Idioma</span>
-          </button>
-        </div>
-      </header> */}
-
       <div className='RefSearch-main'>
         <div className='rf-first'>
           <h2>¿Sobre qué quieres investigar?</h2>
-          <div className='rf-first-search'>
-            <input
-              type="text"
-              value={keyWords}
-              placeholder="Tema en mente"
-              onChange={(e) => setKeyWords(e.target.value)}
-            />
-            <img onClick={handleSearch} src={Plus} alt="" />
-            {/* <button onClick={() => handleTopicSelect('Tema en mente')}>+</button> */}
-          </div>
+          
+          {inputFields.map((field, index) => (
+            <div key={index} className='rf-first-search'>
+              <input
+                type="text"
+                placeholder="Tema en mente"
+                value={field}
+                onChange={(event) => handleInputChange(index, event)}
+              />
+              {index === inputFields.length - 1 && inputFields.length < 5 && (
+                <img src={Plus} alt="Agregar" onClick={handleAddField} style={{ cursor: 'pointer' }} />
+              )}
+            </div>
+          ))}
 
           <h4>Ingresa tus palabras clave separadas por comas</h4>
           <div className="rf-first-enter">
-              <button onClick={handleSearch_2}>
+              <button onClick={handleButtonClick}>
                 <img src={Lupa} alt="" />
               </button>
           </div>
@@ -79,7 +73,6 @@ const SearchBar = () => {
                 <button>Informate sobre las nuevas tecnologías</button>
               </Link>
             </div>
-            {/* {selectedTopic && <div>Selected Topic: {selectedTopic}</div>} */}
         </div>
       </div>
     </div>
@@ -87,3 +80,34 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
+
+// const [keyWords, setKeyWords] = useState('');
+  // const navigate = useNavigate();
+
+  // const handleSearch = async () => {
+  //   try {
+  //     const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: keyWords.split(',') });
+  //   } catch (error) {
+  //     console.error('Error fetching prompts: ', error);
+  //   }
+  // }
+
+  // const handleSearch_2 = async () => {
+  //   try {
+  //     navigate('/prompts');
+  //   }
+  //   catch (error) {
+  //     console.error('Error fetching prompts: ', error);
+  //   }
+  // };
+
+  // {/* <div className='rf-first-search'>
+  //   <input
+  //     type="text"
+  //     value={keyWords}
+  //     placeholder="Tema en mente"
+  //     onChange={(e) => setKeyWords(e.target.value)}
+  //   />
+  //   <img onClick={handleSearch} src={Plus} alt="" />
+  // </div> */}
