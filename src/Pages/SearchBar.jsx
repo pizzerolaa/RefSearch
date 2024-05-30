@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './styles/SearchBar.css';
-import Plus from "../Components/Assets/plus.svg"
-import Lupa from "../Components/Assets/lupa.svg"
-
-//on-LOAD
+import Plus from "../Components/Assets/plus.svg";
+import Lupa from "../Components/Assets/lupa.svg";
 
 const SearchBar = () => {
-
   const [inputFields, setInputFields] = useState([""]);
   const navigate = useNavigate();
 
@@ -26,9 +23,7 @@ const SearchBar = () => {
 
   const handleButtonClick = async () => {
     try {
-      const concatenatedString = inputFields.join(",");
-      console.log(concatenatedString);
-      const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: concatenatedString });
+      const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: inputFields });
       console.log(response);
       navigate('/prompts');
     } catch (error) {

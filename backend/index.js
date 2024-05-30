@@ -56,48 +56,51 @@ let storedPrompts_1 = [];
 app.post('/chat/prompts', async (req, res) => {
     const { keywords } = req.body;
     const apiKey = process.env.OPENAI_API_KEY;
-  
+
     console.log('Received keywords:', keywords); // Log para verificar palabras clave recibidas
-  
-    // Crear un prompt combinando las palabras clave
+
+    if (!Array.isArray(keywords)) {
+        return res.status(400).json({ error: 'Keywords should be an array' });
+    }
+
     const combinedKeywords = keywords.join(', ');
     const prompt = `Genera 1 prompts corto y conciso que combine las siguientes palabras: ${combinedKeywords}`;
-  
-    try {
-      const response = await axios.post(
-          'https://api.openai.com/v1/chat/completions',
-          {
-            model: 'gpt-3.5-turbo',
-            messages: [
-              { role: 'system', content: 'You are an intelligent assistant that generates phrases or prompts to search for educational or scientific content' },
-              { role: 'user', content: prompt }
-            ],
-            max_tokens: 100, // Ajustar max_tokens para que cada respuesta sea corta
-            n: 5, // Solicitar 5 respuestas
-            stop: null,
-            temperature: 0.7,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${apiKey}`,
-            },
-          }
-      );
-  
-      console.log('Response received:', response.data); // Log para verificar respuesta recibida
-      const generatedPrompts = response.data.choices.map(choice => choice.message.content.trim());
-      const uniquePrompts = [...new Set(generatedPrompts)]; // Eliminar respuestas duplicadas
 
-      // Limpiar los prompts almacenados
-      storedPrompts_1 = [];
-      // Almacenar los prompts generados
-      storedPrompts_1.push(...uniquePrompts);
-      
-      res.json({ prompts: uniquePrompts });
+    try {
+        const response = await axios.post(
+            'https://api.openai.com/v1/chat/completions',
+            {
+                model: 'gpt-3.5-turbo',
+                messages: [
+                    { role: 'system', content: 'You are an intelligent assistant that generates phrases or prompts to search for educational or scientific content' },
+                    { role: 'user', content: prompt }
+                ],
+                max_tokens: 100, // Ajustar max_tokens para que cada respuesta sea corta
+                n: 5, // Solicitar 5 respuestas
+                stop: null,
+                temperature: 0.7,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`,
+                },
+            }
+        );
+
+        console.log('Response received:', response.data); // Log para verificar respuesta recibida
+        const generatedPrompts = response.data.choices.map(choice => choice.message.content.trim());
+        const uniquePrompts = [...new Set(generatedPrompts)]; // Eliminar respuestas duplicadas
+
+        // Limpiar los prompts almacenados
+        storedPrompts_1 = [];
+        // Almacenar los prompts generados
+        storedPrompts_1.push(...uniquePrompts);
+
+        res.json({ prompts: uniquePrompts });
     } catch (error) {
-      console.error('Error fetching prompts:', error.response ? error.response.data : error.message);
-      res.status(500).json({ error: error.message });
+        console.error('Error fetching prompts:', error.response ? error.response.data : error.message);
+        res.status(500).json({ error: error.message });
     }
 });
 
