@@ -4,7 +4,7 @@ const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 
-const dplapiKey = process.env.DPL_API_KEY;
+const dplapiKey = '39072819-c4f4-4270-9f36-ac4fa928ad7c:fx';
 
 const app = express();
 const PORT = 8800;
@@ -107,25 +107,6 @@ app.get('/prompts', (req, res) => {
     res.json({ prompts: storedPrompts_1 });
 });
 
-//Google Scholar
-// app.get('/search', (req, res) => {
-//     const query = req.query.q || 'biology'; // Puedes modificar esta línea para tomar un parámetro de consulta
-
-//     getJson({
-//         engine: "google_scholar",
-//         q: query,
-//         api_key: process.env.SERPAPI_API_KEY
-//     }, (json) => {
-//         if (json.error) {
-//             res.status(500).json({ error: json.error });
-//         } else {
-//             res.json(json.organic_results);
-//         }
-//     }).catch(err => {
-//         console.error("Error:", err);
-//         res.status(500).json({ error: "Failed to fetch data from SerpApi" });
-//     });
-// });
 
 app.post('/translate', async (req, res) => {
     const { text, targetLang } = req.body;
