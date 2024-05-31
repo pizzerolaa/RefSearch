@@ -7,6 +7,7 @@ import Lupa from "../Components/Assets/lupa.svg";
 
 const SearchBar = () => {
   const [inputFields, setInputFields] = useState([""]);
+  const [targetLang, setTargetLang] = useState('en');
   const navigate = useNavigate();
 
   const handleAddField = () => {
@@ -23,25 +24,35 @@ const SearchBar = () => {
 
   const handleButtonClick = async () => {
     try {
-      const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: inputFields });
-      console.log(response);
+      const response = await axios.post('http://localhost:8800/translate', {
+        text: JSON.stringify(inputFields),
+        targetLang: targetLang,
+      });
+
+      const translatedFields = JSON.parse(response.data.translations[0].text);
+      setInputFields(translatedFields);
+
       navigate('/prompts');
     } catch (error) {
       console.error('Error fetching prompts: ', error);
     }
   };
 
+  const handleChangeLanguage = (lang) => {
+    setTargetLang(lang);
+  };
+
   return (
     <div className="searchBar">
       <div className='RefSearch-main'>
         <div className='rf-first'>
-          <h2>¿Sobre qué quieres investigar?</h2>
+          <h2>{targetLang === 'en' ? 'What do you want to research about?' : '¿Sobre qué quieres investigar?'}</h2>
           
           {inputFields.map((field, index) => (
             <div key={index} className='rf-first-search'>
               <input
                 type="text"
-                placeholder="Tema en mente"
+                placeholder={targetLang === 'en' ? 'Topic in mind' : 'Tema en mente'}
                 value={field}
                 onChange={(event) => handleInputChange(index, event)}
               />
@@ -51,21 +62,26 @@ const SearchBar = () => {
             </div>
           ))}
 
-          <h4>Ingresa tus palabras clave separadas por comas</h4>
+          <h4>{targetLang === 'en' ? 'Enter your keywords separated by commas' : 'Ingresa tus palabras clave separadas por comas'}</h4>
           <div className="rf-first-enter">
               <button onClick={handleButtonClick}>
                 <img src={Lupa} alt="" />
               </button>
           </div>
+          <div>
+              <button onClick={() => handleChangeLanguage('en')}>English</button>
+              <button onClick={() => handleChangeLanguage('es')}>Español</button>
+              {/* Agrega más botones para otros idiomas si es necesario */}
+            </div>
         </div>
 
         <div className='rf-second'>
-            <button>Descubre</button>
+            <button>{targetLang === 'en' ? 'Discover' : 'Descubre'}</button>
             <div className='rf-second-buttons'>
               <Link style={{textDecoration:'none'}} to='/prompts'>
-                <button>Datos intersantes sobre ciencia</button>
-                <button>Busca información nueva</button>
-                <button>Informate sobre las nuevas tecnologías</button>
+                <button>{targetLang === 'en' ? 'Interesting data about science' : 'Datos interesantes sobre ciencia'}</button>
+                <button>{targetLang === 'en' ? 'Search for new information' : 'Busca información nueva'}</button>
+                <button>{targetLang === 'en' ? 'Learn about new technologies' : 'Infórmate sobre las nuevas tecnologías'}</button>
               </Link>
             </div>
         </div>
@@ -75,34 +91,3 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
-
-
-// const [keyWords, setKeyWords] = useState('');
-  // const navigate = useNavigate();
-
-  // const handleSearch = async () => {
-  //   try {
-  //     const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: keyWords.split(',') });
-  //   } catch (error) {
-  //     console.error('Error fetching prompts: ', error);
-  //   }
-  // }
-
-  // const handleSearch_2 = async () => {
-  //   try {
-  //     navigate('/prompts');
-  //   }
-  //   catch (error) {
-  //     console.error('Error fetching prompts: ', error);
-  //   }
-  // };
-
-  // {/* <div className='rf-first-search'>
-  //   <input
-  //     type="text"
-  //     value={keyWords}
-  //     placeholder="Tema en mente"
-  //     onChange={(e) => setKeyWords(e.target.value)}
-  //   />
-  //   <img onClick={handleSearch} src={Plus} alt="" />
-  // </div> */}

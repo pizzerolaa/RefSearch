@@ -1,0 +1,54 @@
+.translate-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .translate-input {
+    width: 100%;
+    max-width: 600px;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .translate-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .translate-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .translate-result {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .translate-result h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .translate-result p {
+    font-size: 16px;
+  }
+  

@@ -3,9 +3,8 @@ const mysql = require('mysql');
 const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-//const {getJson} = require('serpapi');
-require('dotenv').config();
 
+const dplapiKey = '39072819-c4f4-4270-9f36-ac4fa928ad7c:fx';
 
 const app = express();
 const PORT = 8800;
@@ -127,6 +126,24 @@ app.get('/prompts', (req, res) => {
 //         res.status(500).json({ error: "Failed to fetch data from SerpApi" });
 //     });
 // });
+
+app.post('/translate', async (req, res) => {
+    const { text, targetLang } = req.body;
+  
+    const url = 'https://api-free.deepl.com/v2/translate';
+    const params = {
+      auth_key: dplapiKey,
+      text: text,
+      target_lang: targetLang,
+    };
+  
+    try {
+      const response = await axios.post(url, null, { params });
+      res.json(response.data);
+    } catch (error) {
+      res.status(500).json({ error: 'Error al traducir' });
+    }
+  });
 
 app.listen(PORT, () => {
     console.log('Server started...');
