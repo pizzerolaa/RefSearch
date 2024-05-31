@@ -4,7 +4,7 @@ const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 
-const dplapiKey = '39072819-c4f4-4270-9f36-ac4fa928ad7c:fx';
+const dplapiKey = process.env.DPL_API_KEY;
 
 const app = express();
 const PORT = 8800;
