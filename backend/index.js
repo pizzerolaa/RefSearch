@@ -55,23 +55,25 @@ app.post('/login', (req, res) => {
 let storedPrompts_1 = [];
 //Chat gpt API prompts
 app.post('/chat/prompts', async (req, res) => {
+    console.log("Iniciando prompts");
     const { keywords } = req.body;
     const apiKey = process.env.OPENAI_API_KEY;
 
     console.log('Received keywords:', keywords); // Log para verificar palabras clave recibidas
 
-    if (!Array.isArray(keywords)) {
+    /* if (!Array.isArray(keywords)) {
         return res.status(400).json({ error: 'Keywords should be an array' });
-    }
+    } */
 
-    const combinedKeywords = keywords.join(', ');
-    const prompt = `Genera 1 prompts corto y conciso que combine las siguientes palabras: ${combinedKeywords}`;
+    /* const combinedKeywords = keywords.join(', '); */
+    console.log(keywords);
+    const prompt = `Genera 1 prompts corto y conciso que combine las siguientes palabras: ${keywords}`;
 
     try {
         const response = await axios.post(
             'https://api.openai.com/v1/chat/completions',
             {
-                model: 'gpt-3.5-turbo',
+                model: 'gpt-4',
                 messages: [
                     { role: 'system', content: 'You are an intelligent assistant that generates phrases or prompts to search for educational or scientific content' },
                     { role: 'user', content: prompt }

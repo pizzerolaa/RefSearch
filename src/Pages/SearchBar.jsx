@@ -8,6 +8,7 @@ import Lupa from "../Components/Assets/lupa.svg";
 const TranslateComponent = () => {
   const [inputFields, setInputFields] = useState([""]);
   const [translatedText, setTranslatedText] = useState({});
+  const [targetLang, setTargetLang] = useState('en');
   const [language, setLanguage] = useState('ES'); // Lenguaje por defecto, español en este caso
   const navigate = useNavigate();
 
@@ -58,6 +59,7 @@ const TranslateComponent = () => {
     if (inputFields.length < 5) {
       setInputFields([...inputFields, ""]);
     }
+    console.log(inputFields);
   };
 
   const handleInputChange = (index, event) => {
@@ -66,8 +68,21 @@ const TranslateComponent = () => {
     setInputFields(values);
   };
 
-  const handleButtonClick =  () => {
-    navigate('/prompts');
+  const handleButtonClick = async () => {
+    try {
+      const concatenatedString = inputFields.join(",");
+      console.log(concatenatedString);
+      const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: concatenatedString });
+      console.log(response);
+      navigate('/prompts');
+    }
+    catch (error) {
+      console.error('Error fetching prompts: ', error);
+    }
+  };
+
+  const handleChangeLanguage = (lang) => {
+    setTargetLang(lang);
   };
 
   return (
