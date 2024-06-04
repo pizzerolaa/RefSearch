@@ -4,6 +4,8 @@ const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 
+require('dotenv').config()
+
 const dplapiKey = process.env.DPL_API_KEY;
 
 const app = express();

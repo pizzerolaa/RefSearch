@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import SearchBar from "./SearchBar"
 
 const TranslateComponent = () => {
   const [translatedText, setTranslatedText] = useState({});
@@ -32,9 +33,9 @@ const TranslateComponent = () => {
     translateText();
   }, [language]);
 
-  const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
-  };
+    const handleLanguageChange = (e) => {
+      setLanguage(e.target.value);
+    };
 
   return (
     <div>

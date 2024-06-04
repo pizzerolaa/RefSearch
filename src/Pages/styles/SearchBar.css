@@ -249,3 +249,6 @@ body {
   width: 100% !important;
 }
 
+.rf-third-buttons button:hover {
+  background-color: #6c9286;
+}

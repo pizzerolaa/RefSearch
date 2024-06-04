@@ -9,17 +9,20 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="navbar-functions">
+
                 <div className="navbar-login">
                     <Link style={{textDecoration:'none'}} to='/login'>
                         <img src={user} id='navbar-account' alt="login" />
                     </Link>
                 </div>
+
                 <div className="navbar-idioma">
-                    {/* <button id='navbar-idioma'>
+                    {<button id='navbar-idioma'>
                         <img src={idioma} alt="" />
                         <p>Idioma</p>
-                    </button> */}
+                    </button>}
                 </div>
+                
             </div>
             <link rel="stylesheet" href="" />
             <div className="navbar-logo">
