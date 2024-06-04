@@ -43,12 +43,30 @@ app.post('/login', (req, res) => {
         req.body.username,
         req.body.password
     ];
-    db.query(q, [values], (err, data) => {
+
+    const checkEmailSql = 'SELECT * FROM login WHERE username = ?';
+    db.query(checkEmailSql, values[0], (err, results) => {
+        console.log(values[0]);
         if (err) {
-            console.log(err);
-        } else {
-            res.json("Account add successfully");
+            console.log("error1");
+            res.status(400).json({ error: err.message });
+            return;
         }
+
+        if (results.length > 0) {
+            console.log("error2");
+            res.status(400).json({ error: 'Email already exists!' });
+            return;
+        }
+
+        db.query(q, [values], (err, data) => {
+            console.log("entro a push");
+            if (err) {
+                console.log(err);
+            } else {
+                res.json("Account add successfully");
+            }
+        })
     })
 });
 
