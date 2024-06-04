@@ -15,7 +15,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'RefSear'
+    database: 'refsear'
 });
 
 app.use(express.json());
