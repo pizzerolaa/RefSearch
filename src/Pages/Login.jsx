@@ -21,7 +21,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:8800/regiister', login);
+            const res = await axios.post('http://localhost:8800/register', login);
             navigate('/');
         } catch (err) {
             console.error(err);
