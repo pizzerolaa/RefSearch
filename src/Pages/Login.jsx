@@ -21,12 +21,25 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            const res = await axios.post('http://localhost:8800/regiister', login);
+            navigate('/');
+        } catch (err) {
+            console.error(err);
+            alert("El correo ya esta registrado");
+        }
+    }
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
             const res = await axios.post('http://localhost:8800/login', login);
             navigate('/');
         } catch (err) {
             console.error(err);
+            alert("Intento de login");
         }
     }
+
     // useEffect(() => {
     //     const fetchLogin = async () => {
     //         try {
@@ -51,7 +64,7 @@ const Login = () => {
                 <div className="login-container">
                         <input className="inputs" id='login-email' type="text" placeholder="correo@type.com" name='username' onChange={handleChange}/>
                         <input className="inputs" id='login-password' type="password" placeholder="Contraseña" name='password' onChange={handleChange}/> 
-                        <button className="inputs" id='login-signin' type="submit" onClick={handleSubmit}>Ingresar</button>
+                        <button className="inputs" id='login-signin' type="submit" onClick={handleLogin}>Ingresar</button>
                         <button className="inputs" id='login-signup' type="submit" onClick={handleSubmit}>Registrar</button>
                 </div>
 

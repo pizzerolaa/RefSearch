@@ -26,18 +26,48 @@ app.get('/' , (req, res) => {
     res.json('Hello World');
 });
 
-app.get('/login', (req, res) => {
-    const q = 'SELECT * FROM login';
-    db.query(q, (err, data) => {
+app.post('/login', (req, res) => {
+    console.log("Iniciando login");
+    
+    const values = [
+        req.body.username,
+        req.body.password
+    ];
+
+    const q = 'SELECT * FROM login WHERE username = ?';
+    
+    db.query(q, values[0], (err, results) => {
+
+        console.log("Iniciando query");
+
         if (err) {
-            console.log(err);
-        } else {
-            res.json(data);
+            console.log("Error en la consulta de base de datos", err);
+            res.status(500).json({ error: 'Error en el servidor' });
+            return;
         }
-    })
+
+        if (results.length === 0) {
+            // Usuario no encontrado
+            res.status(400).json({ error: 'Usuario no encontrado' });
+            return;
+        }
+
+        // Comparar la contraseña proporcionada con la almacenada en la base de datos
+        const user = results[0];
+
+        if (user.password !== values[1]) {
+            // Contraseña incorrecta
+            res.status(400).json({ error: 'Contraseña incorrecta' });
+            console.log("incorrecta");
+            return;
+        }
+
+        // Contraseña correcta, se inicia sesión
+        res.json({ message: 'Inicio de sesión exitoso', user: { username: user.username } });
+    });
 });
 
-app.post('/login', (req, res) => {
+app.post('/register', (req, res) => {
     const q = 'INSERT INTO login (`username`, `password`) VALUES (?)';
     const values = [
         req.body.username,
