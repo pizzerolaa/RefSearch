@@ -109,25 +109,6 @@ app.get('/prompts', (req, res) => {
     res.json({ prompts: storedPrompts_1 });
 });
 
-//Google Scholar
-// app.get('/search', (req, res) => {
-//     const query = req.query.q || 'biology'; // Puedes modificar esta línea para tomar un parámetro de consulta
-
-//     getJson({
-//         engine: "google_scholar",
-//         q: query,
-//         api_key: process.env.SERPAPI_API_KEY
-//     }, (json) => {
-//         if (json.error) {
-//             res.status(500).json({ error: json.error });
-//         } else {
-//             res.json(json.organic_results);
-//         }
-//     }).catch(err => {
-//         console.error("Error:", err);
-//         res.status(500).json({ error: "Failed to fetch data from SerpApi" });
-//     });
-// });
 
 app.post('/translate', async (req, res) => {
     const { text, targetLang } = req.body;
