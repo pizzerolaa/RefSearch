@@ -181,3 +181,30 @@ app.post('/translate', async (req, res) => {
 app.listen(PORT, () => {
     console.log('Server started...');
 });
+
+async function searchScholarly(query) {
+    try {
+        const response = await axios.get('http://localhost:5000/scholarly', {
+            params: { q: query }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Error: ', error);
+        throw error;
+    }
+};
+  
+app.get('/scholarlyy', async (req, res) => {
+    try {
+        const query = req.query.q;
+        const results = await searchScholarly(query);
+        res.json(results);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+  
+//   app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+//   });
