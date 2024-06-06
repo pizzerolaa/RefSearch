@@ -9,6 +9,7 @@ const Login = () => {
         username: '',
         password: ''
     });
+
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -22,9 +23,12 @@ const Login = () => {
         e.preventDefault();
         try {
             const res = await axios.post('http://localhost:8800/register', login);
+            localStorage.setItem('isLogged', true);
+            localStorage.setItem('username', login.username);
             navigate('/');
         } catch (err) {
             console.error(err);
+            localStorage.setItem('isLogged', false);
             alert("El correo ya esta registrado");
         }
     }
@@ -33,9 +37,11 @@ const Login = () => {
         e.preventDefault();
         try {
             const res = await axios.post('http://localhost:8800/login', login);
+            localStorage.setItem('isLogged', true);
             navigate('/');
         } catch (err) {
             console.error(err);
+            localStorage.setItem('isLogged', false);
             alert("Intento de login");
         }
     }

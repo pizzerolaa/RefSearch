@@ -32,6 +32,26 @@
     filter: brightness(500%);
 }
 
+.navbar-loggedIn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #365B6D;
+    margin-left: 10px;
+}
+
+.navbar-loggedIn img {
+    max-width: 40px;
+    padding: 0.5rem;
+    /* margin: 10px; */
+    border: none;
+    cursor: pointer;
+}
+
+.navbar-loggedIn img:hover{
+    filter: brightness(500%);
+}
+
 .navbar-idioma {
     display: flex;
     justify-content: flex-end;
