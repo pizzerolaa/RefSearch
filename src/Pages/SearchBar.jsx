@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import './styles/SearchBar.css';
 import Plus from "../Components/Assets/plus.svg";
 import Lupa from "../Components/Assets/lupa.svg";
+import useTranslation from './useTranslation';
 
 const TranslateComponent = () => {
   const [inputFields, setInputFields] = useState([""]);
-  const [translatedText, setTranslatedText] = useState({});
   const [targetLang, setTargetLang] = useState('en');
   const [language, setLanguage] = useState('ES'); // Lenguaje por defecto, español en este caso
   const navigate = useNavigate();
@@ -22,38 +22,12 @@ const TranslateComponent = () => {
     idea2: 'Busca información nueva',
     idea3: 'Infórmate sobre las nuevas tecnologías',
   };
-
-  useEffect(() => {
-    const translateText = async () => {
-      try {
-        const response = await axios.post('http://localhost:8800/translate', {
-          text: Object.values(textToTranslate).join('\n'),
-          targetLang: language,
-        });
-        const translations = response.data.translations[0].text.split('\n');
-        setTranslatedText({
-          title: translations[0],
-          placeholder: translations[1],
-          add: translations[2],
-          addKeyIdea: translations[3],
-          disc: translations[4],
-          idea1: translations[5],
-          idea2: translations[6],
-          idea3: translations[7],
-        });
-      } catch (error) {
-        console.error('Error al traducir:', error);
-      }
-    };
-
-    translateText();
-  }, [language]);
+  
+  const translatedText = useTranslation(textToTranslate, language);
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
   };
-
-  
 
   const handleAddField = () => {
     if (inputFields.length < 5) {

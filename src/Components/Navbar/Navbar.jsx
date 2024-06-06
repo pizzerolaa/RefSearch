@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import "./Navbar.css";
 import user from "../Assets/user.svg";
 import idioma from "../Assets/globe.svg";
 
-
 const Navbar = () => {
+    const [isES, setLangBt] = useState(false);
+
+    // Función para manejar el cambio de estado al hacer clic
+    const handleClick = () => {
+        setLangBt(prevState => !prevState);
+    };
+
     return (
         <div className="navbar">
             <div className="navbar-functions">
@@ -16,10 +22,11 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                <div className="navbar-idioma">
+                <div className="navbar-idioma" onClick={handleClick}>
                     {<button id='navbar-idioma'>
                         <img src={idioma} alt="" />
-                        <p>Idioma</p>
+                        <p>{isES ? 'English' : 'Español'}</p>
+                        
                     </button>}
                 </div>
                 
