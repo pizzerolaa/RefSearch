@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import useTranslation from './useTranslation';
 
-const TranslateComponent = () => {
-  const [language, setLanguage] = useState('ES');
+const TranslateComponent = ({sharedVariable}) => {
+  const [language, setLanguage] = useState(sharedVariable);
   
   const textToTranslate = {
     title: 'Welcome to our website',

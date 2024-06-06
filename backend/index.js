@@ -176,6 +176,7 @@ app.post('/translate', async (req, res) => {
     try {
       const response = await axios.post(url, null, { params });
       res.json(response.data);
+      console.log("Se ha traducido");
     } catch (error) {
       res.status(500).json({ error: 'Error al traducir' });
     }

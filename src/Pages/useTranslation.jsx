@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const useTranslation = (textToTranslate, language) => {
+
+  console.log("Used usetranslation");
   const [translatedText, setTranslatedText] = useState({});
 
   useEffect(() => {

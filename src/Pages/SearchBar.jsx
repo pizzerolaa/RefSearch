@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/SearchBar.css';
 import Plus from "../Components/Assets/plus.svg";
 import Lupa from "../Components/Assets/lupa.svg";
-import useTranslation from './useTranslation';
 
-const SearchBar = ({ sharedVariable }) => {
+const SearchBar = ({sharedVariable}) => {
+  const searchBarRef = useRef(null);
   const [inputFields, setInputFields] = useState([""]);
-  const [language, setLanguage] = useState({sharedVariable}); // Lenguaje por defecto, español en este caso
+  const [translatedText, setTranslatedText] = useState({});
+  const [language, setLanguage] = useState('ES'); // Lenguaje por defecto, español en este caso
   const navigate = useNavigate();
 
+  const handleNavClick = () => {
+    console.log('SearchBar button clicked');
+    // Tu lógica aquí
+  };
+  
+  
   const textToTranslate = {
     title: '¿Sobre qué quieres investigar?',
     placeholder: 'Tema en mente',
@@ -21,14 +28,38 @@ const SearchBar = ({ sharedVariable }) => {
     idea2: 'Busca información nueva',
     idea3: 'Infórmate sobre las nuevas tecnologías',
   };
+
+  const translateText = async (textsToTranslate = textToTranslate) => {
+    try {
+      const response = await axios.post('http://localhost:8800/translate', {
+        text: Object.values(textsToTranslate).join('\n'),
+        targetLang: language,
+      });
+      const translations = response.data.translations[0].text.split('\n');
+      const translatedObject = Object.keys(textsToTranslate).reduce((acc, key, index) => {
+        acc[key] = translations[index];
+        return acc;
+      }, {});
+      setTranslatedText(translatedObject);
+    } catch (error) {
+      console.error('Error al traducir:', error);
+    }
+  };
   
-  const translatedText = useTranslation(textToTranslate, language);
+  useEffect(() => {
+    translateText();
+  }, [language]);
+  
+  const handleLanguageChange = (e) => {
+    setLanguage(e.target.value);
+    // Solo traducir el título y el placeholder al cambiar el idioma
+    translateText(textToTranslate);
+  };
 
   const handleAddField = () => {
     if (inputFields.length < 5) {
       setInputFields([...inputFields, ""]);
     }
-    console.log(inputFields);
   };
 
   const handleInputChange = (index, event) => {
@@ -37,27 +68,18 @@ const SearchBar = ({ sharedVariable }) => {
     setInputFields(values);
   };
 
-  const handleButtonClick = async () => {
-    try {
-      const concatenatedString = inputFields.join(",");
-      console.log(concatenatedString);
-      const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: concatenatedString });
-      console.log(response);
-      navigate('/prompts');
-    }
-    catch (error) {
-      console.error('Error fetching prompts: ', error);
-    }
+  const handleButtonClick =  () => {
+    navigate('/prompts');
   };
 
   return (
-    <div className="searchBar">
+    <div className="searchBar" ref={searchBarRef}>
 
       <div className='RefSearch-main'>
 
         <div className='rf-first'>
 
-          <p>{ sharedVariable }</p>
+
 
           <h2>{translatedText.title}</h2>
           
@@ -93,6 +115,14 @@ const SearchBar = ({ sharedVariable }) => {
               <button>{translatedText.idea1}</button>
               <button>{translatedText.idea2}</button>
               <button>{translatedText.idea3}</button>
+            </Link>
+          </div>
+
+          <div className='rf-third-buttons'>
+            <Link style={{textDecoration:'none'}}>
+              <button onClick={handleLanguageChange} value={"EN"}>English</button>
+              <button onClick={handleLanguageChange} value={"ES"}>Español</button>
+              {/* Agrega más botones para otros idiomas si es necesario */}
             </Link>
           </div>
         </div>

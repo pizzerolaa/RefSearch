@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "./Navbar.css";
 import user from "../Assets/user.svg";
 import idioma from "../Assets/globe.svg";
 
-const Navbar = ({ sharedVariable, setSharedVariable}) => {
-    const [isES, setLangBt] = useState(false);
+const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
+    const [isES, setLangBt] = useState("ES");
     const [isLogin, setLogin] = useState(false);
     const username = localStorage.getItem('username');
+    const searchBarRef = useRef(null);
 
     useEffect(() => {
         const isLogged = localStorage.getItem('isLogged');
@@ -17,10 +18,16 @@ const Navbar = ({ sharedVariable, setSharedVariable}) => {
 
     // Función para manejar el cambio de estado al hacer clic
     const handleClick = () => {
-        setLangBt(prevState => !prevState);
+        setLangBt(isES === "ES" ? "EN" : "ES");
         alert(isES);
-        setSharedVariable(isES);
+        
     };
+
+    const handleBarClick = () => {
+        if (onNavbarButtonClick){
+            onNavbarButtonClick();
+        }
+    }
 
     function userLogged() {
         if (isLogin === 'true') {
@@ -48,9 +55,11 @@ const Navbar = ({ sharedVariable, setSharedVariable}) => {
                     <div className="navbar-idioma" onClick={handleClick}>
                         {<button id='navbar-idioma'>
                             <img src={idioma} alt="" />
-                            <p>{isES ? 'English' : 'Español'}</p>
+                            <p>{isES === "ES" ? 'Español' : 'English'}</p>
                         </button>}
                     </div>
+
+                    <button onClick={handleBarClick}>Navbar Button</button>
                     
 
                 </div>
