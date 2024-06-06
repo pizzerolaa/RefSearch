@@ -6,10 +6,9 @@ import Plus from "../Components/Assets/plus.svg";
 import Lupa from "../Components/Assets/lupa.svg";
 import useTranslation from './useTranslation';
 
-const TranslateComponent = () => {
+const SearchBar = ({ sharedVariable }) => {
   const [inputFields, setInputFields] = useState([""]);
-  const [targetLang, setTargetLang] = useState('en');
-  const [language, setLanguage] = useState('ES'); // Lenguaje por defecto, español en este caso
+  const [language, setLanguage] = useState({sharedVariable}); // Lenguaje por defecto, español en este caso
   const navigate = useNavigate();
 
   const textToTranslate = {
@@ -24,10 +23,6 @@ const TranslateComponent = () => {
   };
   
   const translatedText = useTranslation(textToTranslate, language);
-
-  const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
-  };
 
   const handleAddField = () => {
     if (inputFields.length < 5) {
@@ -55,16 +50,14 @@ const TranslateComponent = () => {
     }
   };
 
-  const handleChangeLanguage = (lang) => {
-    setTargetLang(lang);
-  };
-
   return (
     <div className="searchBar">
 
       <div className='RefSearch-main'>
 
         <div className='rf-first'>
+
+          <p>{ sharedVariable }</p>
 
           <h2>{translatedText.title}</h2>
           
@@ -102,14 +95,6 @@ const TranslateComponent = () => {
               <button>{translatedText.idea3}</button>
             </Link>
           </div>
-
-          <div className='rf-third-buttons'>
-            <Link style={{textDecoration:'none'}}>
-              <button onClick={handleLanguageChange} value={"EN"}>English</button>
-              <button onClick={handleLanguageChange} value={"ES"}>Español</button>
-              {/* Agrega más botones para otros idiomas si es necesario */}
-            </Link>
-          </div>
         </div>
       </div>
     </div>
@@ -117,4 +102,4 @@ const TranslateComponent = () => {
 };
   
 
-export default TranslateComponent;
+export default SearchBar;

@@ -162,6 +162,7 @@ app.get('/prompts', (req, res) => {
 
 app.post('/translate', async (req, res) => {
     const { text, targetLang } = req.body;
+    
   
     const url = 'https://api-free.deepl.com/v2/translate';
     const params = {
@@ -169,7 +170,9 @@ app.post('/translate', async (req, res) => {
       text: text,
       target_lang: targetLang,
     };
-  
+
+    console.log("Intento de traudcicón con " + params.target_lang);
+
     try {
       const response = await axios.post(url, null, { params });
       res.json(response.data);

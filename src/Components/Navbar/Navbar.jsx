@@ -4,7 +4,7 @@ import "./Navbar.css";
 import user from "../Assets/user.svg";
 import idioma from "../Assets/globe.svg";
 
-const Navbar = () => {
+const Navbar = ({ sharedVariable, setSharedVariable}) => {
     const [isES, setLangBt] = useState(false);
     const [isLogin, setLogin] = useState(false);
     const username = localStorage.getItem('username');
@@ -18,6 +18,8 @@ const Navbar = () => {
     // Función para manejar el cambio de estado al hacer clic
     const handleClick = () => {
         setLangBt(prevState => !prevState);
+        alert(isES);
+        setSharedVariable(isES);
     };
 
     function userLogged() {
@@ -49,6 +51,8 @@ const Navbar = () => {
                             <p>{isES ? 'English' : 'Español'}</p>
                         </button>}
                     </div>
+                    
+
                 </div>
                 <link rel="stylesheet" href="" />
                 <div className="navbar-logo">
