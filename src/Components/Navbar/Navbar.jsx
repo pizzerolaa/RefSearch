@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import "./Navbar.css";
 import user from "../Assets/user.svg";
+import userBlue from "../Assets/user-blue.svg";
 import idioma from "../Assets/globe.svg";
 
 const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
@@ -33,14 +34,20 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
     function userLogged() {
         if (isLogin === 'true') {
             return (
-            <button className='navbar-loggedIn'>
-                <img src={user} id='navbar-account' alt="loggedIn" />
-                <p>{userName}</p>
-            </button>
+            <div className="navbar-loggedIn">
+                <button className='navbar-loggedIn'>
+                    <img src={userBlue} id='navbar-account' alt="loggedIn" />
+                    <p>{userName}</p>
+                </button>
+            </div>
             );
             } else {
                 return (
-            <img src={user} id='navbar-account' alt="login" />
+                <div className="navbar-login">
+                    <Link style={{textDecoration:'none'}} to='/login'>
+                        <img src={user} id='navbar-account' alt="login" />
+                    </Link>
+                </div>
             )
         };
     };
@@ -48,11 +55,7 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
         return (
             <div className="navbar">
                 <div className="navbar-functions">
-                    <div className="navbar-login">
-                        <Link style={{textDecoration:'none'}} to='/login'>
-                            {userLogged()}
-                        </Link>
-                    </div>
+                    {userLogged()}
                     <div className="navbar-idioma" onClick={handleClick}>
                         {<button id='navbar-idioma'>
                             <img src={idioma} alt="" />
