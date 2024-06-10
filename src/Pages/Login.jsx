@@ -52,7 +52,7 @@ const Login = () => {
             window.location.reload();
         } catch (err) {
             console.error(err);
-            // localStorage.setItem('isLogged', false);
+            /* localStorage.setItem('isLogged', false); */
             window.location.reload();
             alert("Intento de login");
         }

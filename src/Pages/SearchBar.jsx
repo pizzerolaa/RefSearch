@@ -9,14 +9,8 @@ const SearchBar = ({sharedVariable}) => {
   const searchBarRef = useRef(null);
   const [inputFields, setInputFields] = useState([""]);
   const [translatedText, setTranslatedText] = useState({});
-  const [language, setLanguage] = useState('ES'); // Lenguaje por defecto, español en este caso
+  const [language, setLanguage] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
   const navigate = useNavigate();
-
-  const handleNavClick = () => {
-    console.log('SearchBar button clicked');
-    // Tu lógica aquí
-  };
-  
   
   const textToTranslate = {
     title: '¿Sobre qué quieres investigar?',
@@ -49,12 +43,7 @@ const SearchBar = ({sharedVariable}) => {
   useEffect(() => {
     translateText();
   }, [language]);
-  
-  const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
-    // Solo traducir el título y el placeholder al cambiar el idioma
-    translateText(textToTranslate);
-  };
+
 
   const handleAddField = () => {
     if (inputFields.length < 5) {
@@ -115,14 +104,6 @@ const SearchBar = ({sharedVariable}) => {
               <button>{translatedText.idea1}</button>
               <button>{translatedText.idea2}</button>
               <button>{translatedText.idea3}</button>
-            </Link>
-          </div>
-
-          <div className='rf-third-buttons'>
-            <Link style={{textDecoration:'none'}}>
-              <button onClick={handleLanguageChange} value={"EN"}>English</button>
-              <button onClick={handleLanguageChange} value={"ES"}>Español</button>
-              {/* Agrega más botones para otros idiomas si es necesario */}
             </Link>
           </div>
         </div>

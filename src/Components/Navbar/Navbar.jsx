@@ -20,9 +20,8 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
 
     // Función para manejar el cambio de estado al hacer clic
     const handleClick = () => {
-        setLangBt(isES === "ES" ? "EN" : "ES");
-        alert(isES);
-        
+        localStorage.setItem('LANG', localStorage.getItem('LANG') === "ES" ? "EN" : "ES");
+        window.location.reload();
     };
 
     const handleBarClick = () => {
@@ -59,7 +58,7 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
                     <div className="navbar-idioma" onClick={handleClick}>
                         {<button id='navbar-idioma'>
                             <img src={idioma} alt="" />
-                            <p>{isES === "ES" ? 'Español' : 'English'}</p>
+                            <p>{localStorage.getItem('LANG') === "ES" ? 'English' : 'Español'}</p>
                         </button>}
                     </div>
 
