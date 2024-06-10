@@ -52,6 +52,30 @@
     filter: brightness(500%);
 }
 
+.navbar-loggedIn button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2F1EC;
+    padding: 0.5rem;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.navbar-loggedIn button:hover{
+    background-color: white;
+}
+
+.navbar-loggedIn p{
+    margin-left: 5px;
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #365B6D;
+}
+
 .navbar-idioma {
     display: flex;
     justify-content: flex-end;

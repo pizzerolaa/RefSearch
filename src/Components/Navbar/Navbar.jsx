@@ -7,7 +7,8 @@ import idioma from "../Assets/globe.svg";
 const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
     const [isES, setLangBt] = useState("ES");
     const [isLogin, setLogin] = useState(false);
-    const username = localStorage.getItem('username');
+    const userName = localStorage.getItem('username');
+    const userToken = localStorage.getItem('isLogged');
     const searchBarRef = useRef(null);
 
     useEffect(() => {
@@ -32,9 +33,9 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
     function userLogged() {
         if (isLogin === 'true') {
             return (
-            <button id='navbar-login'>
+            <button className='navbar-loggedIn'>
                 <img src={user} id='navbar-account' alt="loggedIn" />
-                <p>{username}</p>
+                <p>{userName}</p>
             </button>
             );
             } else {
@@ -59,7 +60,7 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
                         </button>}
                     </div>
 
-                    <button onClick={handleBarClick}>Navbar Button</button>
+                    {/* <button onClick={handleBarClick}>Navbar Button</button> */}
                     
 
                 </div>

@@ -4,7 +4,12 @@ import User from "../Components/Assets/user-blue.svg";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
+
 const Login = () => {
+
+    let userRef = '';
+
     const [login, setLogin] = useState({
         username: '',
         password: ''
@@ -23,8 +28,9 @@ const Login = () => {
         e.preventDefault();
         try {
             const res = await axios.post('http://localhost:8800/register', login);
+            userRef = login.username;
             localStorage.setItem('isLogged', true);
-            localStorage.setItem('username', login.username);
+            localStorage.setItem('username', userRef);
             navigate('/');
         } catch (err) {
             console.error(err);
@@ -37,7 +43,9 @@ const Login = () => {
         e.preventDefault();
         try {
             const res = await axios.post('http://localhost:8800/login', login);
+            userRef = login.username;
             localStorage.setItem('isLogged', true);
+            localStorage.setItem('username', userRef);
             navigate('/');
         } catch (err) {
             console.error(err);
