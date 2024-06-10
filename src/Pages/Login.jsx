@@ -31,11 +31,13 @@ const Login = () => {
             userRef = login.username;
             localStorage.setItem('isLogged', true);
             localStorage.setItem('username', userRef);
-            navigate('/');
+            navigate('/');  
+            window.reload();
         } catch (err) {
             console.error(err);
             localStorage.setItem('isLogged', false);
             alert("El correo ya esta registrado");
+            window.location.reload();
         }
     }
 
@@ -47,9 +49,11 @@ const Login = () => {
             localStorage.setItem('isLogged', true);
             localStorage.setItem('username', userRef);
             navigate('/');
+            window.location.reload();
         } catch (err) {
             console.error(err);
             localStorage.setItem('isLogged', false);
+            window.location.reload();
             alert("Intento de login");
         }
     }

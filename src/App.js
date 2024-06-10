@@ -14,6 +14,7 @@ import React, {useState, useRef} from 'react';
 function App() {
   const [sharedVariable, setSharedVariable] = useState('ES');
   const searchBarRef = useRef(null);
+  
 
   const handleNavbarButtonClick = () => {
     console.log("Navbar button clicked");

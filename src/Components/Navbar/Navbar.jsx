@@ -8,7 +8,7 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
     const [isES, setLangBt] = useState("ES");
     const [isLogin, setLogin] = useState(false);
     const userName = localStorage.getItem('username');
-    const userToken = localStorage.getItem('isLogged');
+    
     const searchBarRef = useRef(null);
 
     useEffect(() => {
