@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import "./Navbar.css";
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+// import Dropdown from '../Dropdown/Dropdown';
 import user from "../Assets/user.svg";
 import userBlue from "../Assets/user-blue.svg";
 import idioma from "../Assets/globe.svg";
@@ -35,6 +37,26 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
             return (
             <div className="navbar-loggedIn">
                 <button className='navbar-loggedIn'>
+                    <Menu>
+                        <MenuButton>My account</MenuButton>
+                        <MenuItems anchor="bottom">
+                            <MenuItem>
+                            <a className="menu-item" href="/settings">
+                                Settings
+                            </a>
+                            </MenuItem>
+                            <MenuItem>
+                            <a className="" href="/support">
+                                Support
+                            </a>
+                            </MenuItem>
+                            <MenuItem>
+                            <a className="block data-[focus]:bg-blue-100" href="/license">
+                                License
+                            </a>
+                            </MenuItem>
+                        </MenuItems>
+                    </Menu>
                     <img src={userBlue} id='navbar-account' alt="loggedIn" />
                     <p>{userName}</p>
                 </button>
