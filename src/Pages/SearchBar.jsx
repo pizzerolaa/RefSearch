@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/SearchBar.css';
@@ -6,11 +6,12 @@ import Plus from "../Components/Assets/plus.svg";
 import Lupa from "../Components/Assets/lupa.svg";
 
 const SearchBar = ({sharedVariable}) => {
-  const searchBarRef = useRef(null);
+
   const [inputFields, setInputFields] = useState([""]);
-  const [translatedText, setTranslatedText] = useState({});
-  const [language, setLanguage] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
   const navigate = useNavigate();
+  const [translatedText, setTranslatedText] = useState({});
+  const [language] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
+  
   
   const textToTranslate = {
     title: '¿Sobre qué quieres investigar?',
@@ -57,12 +58,22 @@ const SearchBar = ({sharedVariable}) => {
     setInputFields(values);
   };
 
-  const handleButtonClick =  () => {
-    navigate('/prompts');
+  const handleButtonClick = async () => {
+    try {
+      const concatenatedString = inputFields.join(",");
+      console.log(concatenatedString);
+      const response = await axios.post('http://localhost:8800/chat/prompts', { keywords: concatenatedString });
+      console.log(response);
+      navigate('/prompts');
+    }
+    catch (error) {
+      console.error('Error fetching prompts: ', error);
+    }
   };
 
+
   return (
-    <div className="searchBar" ref={searchBarRef}>
+    <div className="searchBar">
 
       <div className='RefSearch-main'>
 

@@ -4,11 +4,39 @@ import { Link } from 'react-router-dom';
 import Globe from '../Components/Assets/globe-beish.svg';
 import Ref from '../Components/Assets/bookmark.svg';
 import Next from '../Components/Assets/arrowNext.svg';
+import axios from 'axios';
 
 const Results = () => {
 
     const [selectedPrompt, setSelectedPrompt] = useState('');
     const [articles, setArticles] = useState([]);
+    const [translatedText, setTranslatedText] = useState({});
+    const [language, setLanguage] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
+  
+    const textToTranslate = {
+    references: "Lista de referencias"
+  };
+
+  const translateText = async (textsToTranslate = textToTranslate) => {
+    try {
+      const response = await axios.post('http://localhost:8800/translate', {
+        text: Object.values(textsToTranslate).join('\n'),
+        targetLang: language,
+      });
+      const translations = response.data.translations[0].text.split('\n');
+      const translatedObject = Object.keys(textsToTranslate).reduce((acc, key, index) => {
+        acc[key] = translations[index];
+        return acc;
+      }, {});
+      setTranslatedText(translatedObject);
+    } catch (error) {
+      console.error('Error al traducir:', error);
+    }
+  };
+  
+  useEffect(() => {
+    translateText();
+  }, [language]);
 
     useEffect(() => {
         // Recuperar el prompt del local storage y eliminar las comillas
@@ -71,12 +99,6 @@ const Results = () => {
     
     return (
         <div className='results'>
-            <div className="results-idioma">
-                <button id='results-idioma'>
-                    <img src={Globe} alt="" />
-                    <span>Idioma</span>
-                </button>
-            </div>
             <div className="results-results">
                 <h1>{selectedPrompt}</h1>
                 <div className="results-container">
@@ -104,7 +126,7 @@ const Results = () => {
             <div className="results-reflist">
                 <Link style={{textDecoration:'none'}} to='/references'>
                     <button id='results-reflist'>
-                        <span>Lista de Referencias</span>
+                        <span>{translatedText.references}</span>
                         <img src={Next} alt="" />
                     </button>
                 </Link>

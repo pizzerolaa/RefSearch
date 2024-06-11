@@ -1,12 +1,41 @@
-import React from "react";
+import React, { useState , useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./styles/References.css";
-import Globe from "../Components/Assets/globe-beish.svg";
 import FullRef from "../Components/Assets/bookmark-full.svg";
 import Back from "../Components/Assets/arrowBack.svg";
 import Copy from "../Components/Assets/copy.svg";
+import axios from 'axios';
 
 const References = () => {
+    const [translatedText, setTranslatedText] = useState({});
+    const [language] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
+
+    const textToTranslate = {
+    back: "Atrás",
+    copy: "Copiar"
+    };
+
+    const translateText = async (textsToTranslate = textToTranslate) => {
+    try {
+      const response = await axios.post('http://localhost:8800/translate', {
+        text: Object.values(textsToTranslate).join('\n'),
+        targetLang: language,
+      });
+      const translations = response.data.translations[0].text.split('\n');
+      const translatedObject = Object.keys(textsToTranslate).reduce((acc, key, index) => {
+        acc[key] = translations[index];
+        return acc;
+      }, {});
+      setTranslatedText(translatedObject);
+    } catch (error) {
+      console.error('Error al traducir:', error);
+    }
+  };
+  
+  useEffect(() => {
+    translateText();
+  }, [language]);
+
     return (
         <div className="references">
             <div className="references-idioma">
@@ -14,15 +43,9 @@ const References = () => {
                     <Link style={{textDecoration:'none'}} to='/results'>
                         <button>
                             <img src={Back} alt="" />
-                            <span>Atrás</span>
+                            <span>{translatedText.back}</span>
                         </button>
                     </Link>
-                </div>
-                <div className="references-idioma-2">
-                    <button>
-                        <img src={Globe} alt="" />
-                        <span>Idioma</span>
-                    </button>
                 </div>
             </div>
             <div className="references-display">
@@ -77,7 +100,7 @@ const References = () => {
             </div>
             <div className="references-copy">
                 <button>
-                    <span>Copiar</span>
+                    <span>{translatedText.copy}</span>
                     <img src={Copy} alt="" />            
                 </button>
             </div>
