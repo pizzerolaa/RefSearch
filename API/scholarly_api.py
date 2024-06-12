@@ -8,8 +8,8 @@ import re
 app = Flask(__name__)
 
 db = ProxyGenerator()
-db.FreeProxies()
-#db.ScraperAPI("API_KEY")  # Reemplaza esto con tu API Key de ScraperAPI
+# db.FreeProxies()
+db.ScraperAPI("a6ee3191170e8ba4d8aba738beef9784")  # Reemplaza esto con tu API Key de ScraperAPI
 scholarly.use_proxy(db)
 
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -60,7 +60,7 @@ def search_pubs():
             if len(results) >= 5:
                 break
             
-            time.sleep(random.uniform(1, 3))  # Espera entre 1 y 3 segundos
+            # time.sleep(random.uniform(1, 3))  # Espera entre 1 y 3 segundos
             app.logger.info(f"Found article: {title}")
         
         app.logger.info(f"Total results found: {len(results)}")
