@@ -1,11 +1,16 @@
 from flask import Flask, request, jsonify
-from scholarly import scholarly
+from scholarly import scholarly, ProxyGenerator
 import time
 import random
 from flask_cors import CORS
 import re
 
 app = Flask(__name__)
+
+db = ProxyGenerator()
+db.FreeProxies()
+#db.ScraperAPI("API_KEY")  # Reemplaza esto con tu API Key de ScraperAPI
+scholarly.use_proxy(db)
 
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
