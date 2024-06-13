@@ -36,16 +36,20 @@ const References = () => {
     translateText();
   }, [language]);
 
+  const handleClick = () => {
+    window.history.back();
+  };
+
     return (
         <div className="references">
             <div className="references-idioma">
                 <div className="references-idioma-1">
-                    <Link style={{textDecoration:'none'}} to='/results'>
-                        <button>
+                    {/* <Link style={{textDecoration:'none'}} > */}
+                        <button onClick={handleClick}>
                             <img src={Back} alt="" />
                             <span>{translatedText.back}</span>
                         </button>
-                    </Link>
+                    {/* </Link> */}
                 </div>
             </div>
             <div className="references-display">

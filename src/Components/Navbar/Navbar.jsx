@@ -26,6 +26,12 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
         window.location.reload();
     };
 
+    const logout = () => {
+        localStorage.setItem('isLogged', false);
+        localStorage.setItem('username', '');
+        window.location.reload();
+    };
+
     const handleBarClick = () => {
         if (onNavbarButtonClick){
             onNavbarButtonClick();
@@ -41,25 +47,26 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
                             <img src={userBlue} id='navbar-account' alt="loggedI`   n" />
                             <p>{userName}</p>
                         </MenuButton>
-                        
-                        <MenuItems anchor="bottom">
-                            <li className="dropdown-item">
-                                <MenuItem>
-                                <a className="menu-item" href="/References">
-                                    Referencias
-                                </a>
-                                </MenuItem>
-                            </li>
 
-                            <li className="dropdown-item">
-                                <MenuItem>
-                                <a className="menu-item" href="/">
-                                    Cerrar sesión
-                                </a>
-                                </MenuItem>
-                            </li>
-                        </MenuItems>
-                        
+                        <div className="menu" style={{listStyleType: 'none'}}>
+                            <MenuItems anchor="bottom">
+                                <li className="dropdown-item" style={{listStyleType: 'none'}}>
+                                    <MenuItem>
+                                    <a className="menu-item" href="/References">
+                                        Referencias
+                                    </a>
+                                    </MenuItem>
+                                </li>
+
+                                <li className="dropdown-item" style={{listStyleType: 'none'}}>
+                                    <MenuItem>
+                                    <a className="menu-item" onClick={logout}>
+                                        Cerrar sesión
+                                    </a>
+                                    </MenuItem>
+                                </li>
+                            </MenuItems>
+                        </div>
                     </Menu>
             </div>
             );
