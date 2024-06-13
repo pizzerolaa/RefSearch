@@ -8,6 +8,34 @@ import Redo from "../Components/Assets/redo.svg";
 const Prompts = () => {
     const [storedPrompts_1, setStoredPrompts_1] = useState([]);
     const navigate = useNavigate(); 
+    const [translatedText, setTranslatedText] = useState({});
+  const [language, setLanguage] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
+  
+  
+  const textToTranslate = {
+    question: '¿Qué idea te gusta más?'
+  };
+
+  const translateText = async (textsToTranslate = textToTranslate) => {
+    try {
+      const response = await axios.post('http://localhost:8800/translate', {
+        text: Object.values(textsToTranslate).join('\n'),
+        targetLang: language,
+      });
+      const translations = response.data.translations[0].text.split('\n');
+      const translatedObject = Object.keys(textsToTranslate).reduce((acc, key, index) => {
+        acc[key] = translations[index];
+        return acc;
+      }, {});
+      setTranslatedText(translatedObject);
+    } catch (error) {
+      console.error('Error al traducir:', error);
+    }
+  };
+  
+  useEffect(() => {
+    translateText();
+  }, [language]);
 
     useEffect(() => {
         const fetchStoredPrompts = async () => {
@@ -40,9 +68,7 @@ const Prompts = () => {
 
     return (
         <div className='prompts'>
-            <h1>
-                ¿Qué idea te agrada más?
-            </h1>
+            <h1>{translatedText.question}</h1>
             <div className="prompts-row1">
                 {storedPrompts_1.slice(0, 3).map((prompt, index) => (
                 <button onClick={() => handlePromptSelection(prompt)} key={index}>{prompt}</button>

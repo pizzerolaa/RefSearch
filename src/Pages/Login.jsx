@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/Login.css';
 import User from "../Components/Assets/user-blue.svg";
 import axios from 'axios';
@@ -7,7 +7,40 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+    const [translatedText, setTranslatedText] = useState({});
+    const [language, setLanguage] = useState(localStorage.getItem('LANG'));
+    
+    const textToTranslate = {
+        titulo: 'Login',
+        mail: 'mail',
+        domain: 'domain',
+        extension: 'extension',
+        password: 'Password',
+        login: 'Log in',
+        signup: 'Sign up'
+      };
 
+    const translateText = async (textsToTranslate = textToTranslate) => {
+        try {
+          const response = await axios.post('http://localhost:8800/translate', {
+            text: Object.values(textsToTranslate).join('\n'),
+            targetLang: language,
+          });
+          const translations = response.data.translations[0].text.split('\n');
+          const translatedObject = Object.keys(textsToTranslate).reduce((acc, key, index) => {
+            acc[key] = translations[index];
+            return acc;
+          }, {});
+          setTranslatedText(translatedObject);
+        } catch (error) {
+          console.error('Error al traducir:', error);
+        }
+      };
+      
+      useEffect(() => {
+        translateText();
+      }, [language]);
+      
     let userRef = '';
 
     const [login, setLogin] = useState({
@@ -76,14 +109,14 @@ const Login = () => {
             <div className="login-tab">
                 <div className='header-user'>
                     <img src={User} alt="" />    
-                <h1>Iniciar Sesión</h1>
+                <h1>{translatedText.titulo}</h1>
                 </div>
                 
                 <div className="login-container">
-                        <input className="inputs" id='login-email' type="text" placeholder="correo@type.com" name='username' onChange={handleChange}/>
-                        <input className="inputs" id='login-password' type="password" placeholder="Contraseña" name='password' onChange={handleChange}/> 
-                        <button className="inputs" id='login-signin' type="submit" onClick={handleLogin}>Ingresar</button>
-                        <button className="inputs" id='login-signup' type="submit" onClick={handleSubmit}>Registrar</button>
+                        <input className="inputs" id='login-email' type="text" placeholder={translatedText.mail+"@"+translatedText.domain+"."+translatedText.extension} name='username' onChange={handleChange}/>
+                        <input className="inputs" id='login-password' type="password" placeholder={translatedText.password} name='password' onChange={handleChange}/> 
+                        <button className="inputs" id='login-signin' type="submit" onClick={handleLogin}>{translatedText.login}</button>
+                        <button className="inputs" id='login-signup' type="submit" onClick={handleSubmit}>{translatedText.signup}</button>
                 </div>
 
                 <div className='footer-lang'>
