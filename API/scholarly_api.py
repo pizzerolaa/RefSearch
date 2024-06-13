@@ -3,11 +3,17 @@ from scholarly import scholarly, ProxyGenerator
 #import time
 from flask_cors import CORS
 import re
+import os
+from dotenv import load_dotenv, dotenv_values
+
+load_dotenv()
 
 app = Flask(__name__)
 
+ApiKey = os.getenv("SCRAPER_API_KEY")
+
 db = ProxyGenerator()
-db.ScraperAPI("a6ee3191170e8ba4d8aba738beef9784")
+db.ScraperAPI(ApiKey)
 scholarly.use_proxy(db)
 
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
