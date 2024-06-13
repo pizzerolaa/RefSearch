@@ -115,7 +115,7 @@ app.post('/chat/prompts', async (req, res) => {
 
     /* const combinedKeywords = keywords.join(', '); */
     console.log(keywords);
-    const prompt = `Genera 1 prompts corto y conciso que combine las siguientes palabras: ${keywords}`;
+    const prompt = `Genera un prompt corto pero que sea general y fácil de investigar en Google Scholar que combine las siguientes palabras: ${keywords}`;
 
     try {
         const response = await axios.post(
