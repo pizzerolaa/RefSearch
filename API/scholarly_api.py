@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from scholarly import scholarly, ProxyGenerator
-import time
-import random
+#import time
 from flask_cors import CORS
 import re
 
@@ -75,7 +74,7 @@ def search_with_fallback(query):
         #app.logger.info(f"Found article: {title}")
     if not results:
         app.logger.info("No results found for the original query. Performing broader search.")
-        broader_query = ' '.join(query.split()[:2])
+        broader_query = ' '.join(query.split()[:4])
         results = search_with_fallback(broader_query)
     return results
 
