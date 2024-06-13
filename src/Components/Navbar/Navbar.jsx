@@ -36,30 +36,31 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
         if (isLogin === 'true') {
             return (
             <div className="navbar-loggedIn">
-                <button className='navbar-loggedIn'>
                     <Menu>
-                        <MenuButton>My account</MenuButton>
+                        <MenuButton className="menuButton"> 
+                            <img src={userBlue} id='navbar-account' alt="loggedI`   n" />
+                            <p>{userName}</p>
+                        </MenuButton>
+                        
                         <MenuItems anchor="bottom">
-                            <MenuItem>
-                            <a className="menu-item" href="/settings">
-                                Settings
-                            </a>
-                            </MenuItem>
-                            <MenuItem>
-                            <a className="" href="/support">
-                                Support
-                            </a>
-                            </MenuItem>
-                            <MenuItem>
-                            <a className="block data-[focus]:bg-blue-100" href="/license">
-                                License
-                            </a>
-                            </MenuItem>
+                            <li className="dropdown-item">
+                                <MenuItem>
+                                <a className="menu-item" href="/References">
+                                    Referencias
+                                </a>
+                                </MenuItem>
+                            </li>
+
+                            <li className="dropdown-item">
+                                <MenuItem>
+                                <a className="menu-item" href="/">
+                                    Cerrar sesión
+                                </a>
+                                </MenuItem>
+                            </li>
                         </MenuItems>
+                        
                     </Menu>
-                    <img src={userBlue} id='navbar-account' alt="loggedIn" />
-                    <p>{userName}</p>
-                </button>
             </div>
             );
             } else {

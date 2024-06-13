@@ -1,3 +1,14 @@
+.dropdown-item{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 14px;
+    color: #636363;
+}
+
+
+
 .navbar{
     /* padding: 10px; */
     display: flex;
