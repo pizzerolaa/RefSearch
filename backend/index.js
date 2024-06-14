@@ -306,6 +306,10 @@ app.post('/get-references-by-username', (req, res) => {
         res.json(parsedReferences);  // Send parsed references to the frontend
     });
 });
+
+app.post('/remove-reference', (req, res) => {
+    console.log("remove");
+});
   
 //   app.listen(port, () => {
 //     console.log(`Server is running on port ${port}`);
