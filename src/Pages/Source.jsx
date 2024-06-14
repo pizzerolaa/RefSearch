@@ -48,10 +48,10 @@ const Source = () => {
                     </Link>
                 </div>
                 <div className="source-idioma-1">
-                    <button>
+                    {/* <button>
                         <img src={Globe} alt="" />
                         <span>Idioma</span>
-                    </button>
+                    </button> */}
                 </div>
             </div>
             <div className="source-tab">
@@ -83,10 +83,10 @@ const Source = () => {
                     </button> */}
                 </div>
                 <div className="source-idioma-2">
-                    <button>
+                    {/* <button>
                         <span>PDF</span>
                         <img src={Pdf} alt="" />            
-                    </button>
+                    </button> */}
                 </div>    
             </div>
         </div>
