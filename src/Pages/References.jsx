@@ -25,10 +25,14 @@ const References = () => {
         try {
             const username = localStorage.getItem('username');
 
+            console.log("Busco");
+
             const response = await axios.post('http://localhost:8800/remove-reference', {
                 username,
                 reference: JSON.stringify(reference)  // Convert the object back to a JSON string
             });
+
+            console.log("passed");
 
             if (response.data.message === 'Reference removed successfully') {
                 // Filter out the removed reference from the state
@@ -101,7 +105,7 @@ const References = () => {
                         <div className="references-tab" key={index}>
                             <div className="references-content">
                                 {link ? (
-                                    <Link to="/source" onClick={changeLink(ref)} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                                    <Link to="/source" /**onClick={changeLink(ref)}**/ target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                                         <h4>{title}</h4>
                                     </Link>
                                 ) : (

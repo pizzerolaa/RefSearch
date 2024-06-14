@@ -318,9 +318,34 @@ app.post('/get-references-by-username', (req, res) => {
 });
 
 app.post('/remove-reference', (req, res) => {
-    console.log("remove");
+    const { username, reference } = req.body;
+
+    // Check if both username and reference are provided
+    if (!username || !reference) {
+        return res.status(400).json({ error: 'Username and reference are required' });
+    }
+
+    // SQL query to remove the reference
+    const query = 'DELETE FROM `References` WHERE `username` = ? AND `reference` = ?';
+
+    // Execute the query
+    db.query(query, [username, reference], (err, result) => {
+        if (err) {
+            console.error('Error removing reference:', err);
+            res.status(500).json({ error: 'Failed to remove reference' });
+            return;
+        }
+
+        if (result.affectedRows === 0) {
+            // No rows were deleted
+            res.status(404).json({ message: 'Reference not found' });
+            return;
+        }
+
+        // Successfully removed the reference
+        res.json({ message: 'Reference removed successfully' });
+    });
 });
-  
 //   app.listen(port, () => {
 //     console.log(`Server is running on port ${port}`);
 //   });
