@@ -11,6 +11,7 @@ const SearchBar = ({sharedVariable}) => {
   const navigate = useNavigate();
   const [translatedText, setTranslatedText] = useState({});
   const [language] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
+  const [randomPrompts, setRandomPrompts] = useState([]);
   
   
   const textToTranslate = {
@@ -71,30 +72,17 @@ const SearchBar = ({sharedVariable}) => {
     }
   };
 
-  const [randomPrompts, setRandomPrompts] = useState([]);
-
-  const fetchPrompts = async () => {
+  const fetchRandomPrompts = async () => {
     try {
-        const response = await axios.get('http://localhost:8800/prompts');
-        const prompts = response.data.prompts;
-        const randomPrompts = [];
-
-        while (randomPrompts.length < 3) {
-            const randomIndex = Math.floor(Math.random() * prompts.length);
-            const prompt = prompts[randomIndex];
-            if(!randomPrompts.includes(prompt)) {
-                randomPrompts.push(prompt);
-            }
-        }
-
-        setRandomPrompts(randomPrompts);
+      const response = await axios.get('http://localhost:8800/random-prompts');
+      setRandomPrompts(response.data.prompts);
     } catch (error) {
-        console.error('Error fetching prompts:', error);
+      console.error('Error fetching random prompts: ', error);
     }
-}
-
+  };
+  
   useEffect(() => {
-      fetchPrompts();
+    fetchRandomPrompts();
   }, []);
 
   return (
@@ -103,8 +91,6 @@ const SearchBar = ({sharedVariable}) => {
       <div className='RefSearch-main'>
 
         <div className='rf-first'>
-
-
 
           <h2>{translatedText.title}</h2>
           
@@ -137,7 +123,9 @@ const SearchBar = ({sharedVariable}) => {
 
           <div className='rf-second-buttons'>
             {randomPrompts.map((prompt, index) => (
-              <button key={index}>{prompt}</button>
+              <Link key={index} style={{ textDecoration: 'none' }} to='/prompts'>
+                <button>{prompt}</button>
+              </Link>
             ))}
           </div>
         </div>

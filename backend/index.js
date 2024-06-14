@@ -3,7 +3,6 @@ const mysql = require('mysql');
 const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-const { useEffect } = require('react');
 
 require('dotenv').config()
 
@@ -209,6 +208,45 @@ app.get('/scholarlyy', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+app.get('/random-prompts', async (req, res) => {
+    const apiKey = process.env.OPENAI_API_KEY;
+    const prompt = 'Genera tres prompts cortos y generales relacionados con educación o ciencia';
+  
+    try {
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          model: 'gpt-4',
+          messages: [
+            { role: 'system', content: 'You are an intelligent assistant that generates phrases or prompts to search for educational or scientific content' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 200,
+          n: 1,
+          stop: null,
+          temperature: 0.7,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`,
+          },
+        }
+      );
+  
+      const content = response.data.choices[0].message.content.trim();
+    const generatedPrompts = content.split('\n').map(prompt => {
+      // Elimina los números, puntos, guiones y comillas al inicio y final de cada prompt
+      return prompt.replace(/^\d+\.?\s*-?\s*"|"$/g, '').trim();
+    }).filter(prompt => prompt !== ''); // Elimina cualquier línea vacía
+
+    res.json({ prompts: generatedPrompts });
+    } catch (error) {
+      console.error('Error fetching random prompts:', error.response ? error.response.data : error.message);
+      res.status(500).json({ error: error.message });
+    }
+  });
   
 //   app.listen(port, () => {
 //     console.log(`Server is running on port ${port}`);
