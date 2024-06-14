@@ -80,11 +80,11 @@ const Prompts = () => {
                 <button onClick={() => handlePromptSelection(prompt)} key={index}>{prompt}</button>
                 ))}
             </div>
-            <div className="prompts-redo">
+            {/* <div className="prompts-redo">
                 <button>
                     <img src={Redo} alt="" />
                 </button>
-            </div>
+            </div> */}
         </div>
     );
 }

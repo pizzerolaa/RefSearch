@@ -34,9 +34,9 @@ const SearchBar = ({ sharedVariable }) => {
     add: 'Agregar',
     addKeyIdea: 'Añade tu tema',
     disc: 'Descubre',
-    idea1: 'Datos interesantes sobre ciencia',
-    idea2: 'Busca información nueva',
-    idea3: 'Infórmate sobre las nuevas tecnologías',
+    idea1: 'Principios fundamentales de la física cuántica',
+    idea2: 'Metodologías modernas de enseñanza en educación primaria',
+    idea3: 'Impacto del cambio climático en la biodiversidad global',
   };
 
   const translateText = async (textsToTranslate = textToTranslate) => {
@@ -144,13 +144,13 @@ const SearchBar = ({ sharedVariable }) => {
           <button>{translatedText.disc}</button>
           <div className='rf-second-buttons'>
             <button onClick={() => handlePromptClick('Principios fundamentales de la física cuántica')}>
-              Principios fundamentales de la física cuántica
+              {translatedText.idea1}
             </button>
             <button onClick={() => handlePromptClick('Metodologías modernas de enseñanza en educación primaria')}>
-              Metodologías modernas de enseñanza en educación primaria
+            {translatedText.idea2}
             </button>
             <button onClick={() => handlePromptClick('Impacto del cambio climático en la biodiversidad global')}>
-              Impacto del cambio climático en la biodiversidad global
+            {translatedText.idea3}
             </button>
           </div>
         </div>

@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './styles/Results.css';
-import { Link } from 'react-router-dom';
-import Globe from '../Components/Assets/globe-beish.svg';
+import { Link } from 'react-router-dom';  
 import Ref from '../Components/Assets/bookmark.svg';
 import Next from '../Components/Assets/arrowNext.svg';
 import axios from 'axios';
 
 const Results = () => {
-
     const [selectedPrompt, setSelectedPrompt] = useState('');
     const [articles, setArticles] = useState([]);
     const [translatedText, setTranslatedText] = useState({});
-    const [language, setLanguage] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
+    const [language, setLanguage] = useState(localStorage.getItem('LANG'));
     const [formData, setFormData] = useState({
         username: '',
         reference: ''
     });
 
-    const textToTranslate = {
-        references: "Lista de referencias"
-    };
-
-    const translateText = async (textsToTranslate = textToTranslate) => {
+    const translateText = async (textsToTranslate) => {
         try {
             const response = await axios.post('http://localhost:8800/translate', {
                 text: Object.values(textsToTranslate).join('\n'),
@@ -39,11 +33,6 @@ const Results = () => {
     };
 
     useEffect(() => {
-        translateText();
-    }, [language]);
-
-    useEffect(() => {
-        // Recuperar el prompt del local storage y eliminar las comillas
         const prompt = localStorage.getItem('selectedPrompt');
         if (prompt) {
             const cleanedPrompt = prompt.replace(/['"]+/g, '');
@@ -60,11 +49,46 @@ const Results = () => {
                     summary: convertSpecialCharacters(article.summary),
                     authors: article.authors.map(author => convertSpecialCharacters(author))
                 }));
+                console.log(convertedResults)
+
+                const textToTranslate = {
+                    title: localStorage.getItem('selectedPrompt'),
+                    references: "Lista de referencias",
+                    f1t: convertedResults[0]?.title,
+                    f1s: convertedResults[0]?.summary,
+                    f2t: convertedResults[1]?.title,
+                    f2s: convertedResults[1]?.summary,
+                    f3t: convertedResults[2]?.title,
+                    f3s: convertedResults[2]?.summary,
+                    f4t: convertedResults[3]?.title,
+                    f4s: convertedResults[3]?.summary,
+                    f5t: convertedResults[4]?.title,
+                    f5s: convertedResults[4]?.summary,
+                    summary: "No se encontró un resumen, podría ser un artículo nuevo o una preimpresión"
+                };
+
+                await translateText(textToTranslate);
+
+                console.log(convertedResults)
+
                 setArticles(convertedResults);
             }
         };
+
         fetchData();
-    }, []);
+    }, [language]);
+
+    useEffect(() => {
+        if (Object.keys(translatedText).length > 0) {
+            setArticles(prevArticles => 
+                prevArticles.map((article, index) => ({
+                    ...article,
+                    title: translatedText[`f${index + 1}t`] || article.title,
+                    summary: translatedText[`f${index + 1}s`] || article.summary
+                }))
+            );
+        }
+    }, [translatedText]);
 
     const convertSpecialCharacters = (text) => {
         if (!text) return '';
@@ -132,7 +156,7 @@ const Results = () => {
     return (
         <div className='results'>
             <div className="results-results">
-                <h1>{selectedPrompt}</h1>
+                <h1>{translatedText.title}</h1>
                 <div className="results-container">
                     {articles.map((article, index) => (
                         <div key={index} className="results-card">
@@ -145,7 +169,7 @@ const Results = () => {
                             </Link>
                             <div className="results-content">
                                 <div className="results-summary">
-                                    <p>{article.summary || 'No summary available. This might be a recent paper or preprint.'}</p>
+                                    <p>{article.summary || translatedText.summary}</p>
                                 </div>
                                 <button onClick={() => handleArticleSave(article)}>
                                     <img src={Ref} alt="" />
@@ -158,13 +182,13 @@ const Results = () => {
             <div className="results-reflist">
                 <Link style={{ textDecoration: 'none' }} to='/references'>
                     <button id='results-reflist'>
-                        <span>{translatedText.references}</span>
+                        <h3>{translatedText.references}</h3>
                         <img src={Next} alt="" />
                     </button>
                 </Link>
             </div>
         </div>
     );
-}
+};
 
 export default Results;
