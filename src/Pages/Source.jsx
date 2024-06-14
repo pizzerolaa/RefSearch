@@ -36,16 +36,19 @@ const Source = () => {
     };
 
 
+    const handleClick = () => {
+        window.history.back();
+    };
+
+
     return (
         <div className="source">
             <div className="source-idioma">
                 <div className="source-idioma-1">
-                    <Link style={{textDecoration:'none'}} to='/results'>
-                        <button>
-                            <img src={Back} alt="" />
-                            <span>Atrás</span>
-                        </button>
-                    </Link>
+                    <button onClick={handleClick}>
+                        <img src={Back} alt="" />
+                        <span>Atrás</span>
+                    </button>
                 </div>
                 <div className="source-idioma-1">
                     {/* <button>
