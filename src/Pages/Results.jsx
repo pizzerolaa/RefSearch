@@ -104,31 +104,30 @@ const Results = () => {
     }
 
     const handleArticleSave = async (article) => {
-        localStorage.setItem('savedArticle', JSON.stringify(article));
-
         const username = localStorage.getItem('username');
         const savedArticle = localStorage.getItem('savedArticle');
-
+    
         const data = {
             username: username || '',
             reference: savedArticle || ''
         };
-
+    
         setFormData({
             username: username || '',
             reference: savedArticle || ''
         });
-
+    
         try {
             const response = await axios.post('http://localhost:8800/add-reference', data);
             console.log('Response:', response.data);
             alert('Reference added successfully!');
-            localStorage.removeItem('saveddArticle');  // Optionally clear the saved article
+            localStorage.removeItem('savedArticle');  // Optionally clear the saved article
         } catch (error) {
-            console.error('Error adding reference:', error);
+            console.error('Error adding reference:', error.response ? error.response.data : error.message);
             alert('Failed to add reference');
         }
     }
+    
     
     return (
         <div className='results'>

@@ -15,7 +15,15 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'refsear'
+    database: 'RefSear'
+});
+
+db.connect((err) => {
+    if (err) {
+        console.error('Error connecting to the database:', err);
+        return;
+    }
+    console.log('Connected to the database');
 });
 
 app.use(express.json());
@@ -269,18 +277,20 @@ app.get('/random-prompts', async (req, res) => {
 app.post('/add-reference', (req, res) => {
     const { username, reference } = req.body;
 
-    const query = 'INSERT INTO `References` (`username`, `reference`) VALUES (?, ?)';
-    const values = [username, reference];
+    if (reference.length > 65535) { // Verifica la longitud si estás usando TEXT (65,535 caracteres)
+        return res.status(400).json({ error: 'Reference data is too long' });
+    }
 
-    db.query(query, values, (err, result) => {
-        if (err) {
-            console.error('Error inserting data:', err);
-            res.status(500).json({ error: 'Failed to add reference' });
-            return;
+    const query = 'INSERT INTO `References` (`username`, `reference`) VALUES (?, ?)';
+    db.query(query, [username, reference], (error, results) => {
+        if (error) {
+            console.error('Error inserting data:', error);
+            return res.status(500).json({ error: 'Failed to add reference' });
         }
-        res.json({ message: 'Reference added successfully', data: result });
+        res.status(200).json({ message: 'Reference added successfully', data: results });
     });
 });
+
 
 app.post('/get-references-by-username', (req, res) => {
     const { username } = req.body;
