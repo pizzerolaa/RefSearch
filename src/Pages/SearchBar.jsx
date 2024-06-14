@@ -12,6 +12,24 @@ const SearchBar = ({sharedVariable}) => {
   const [translatedText, setTranslatedText] = useState({});
   const [language] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
   const [randomPrompts, setRandomPrompts] = useState([]);
+
+  useEffect(() => {
+    // Function to create the References table
+    const createReferencesTable = async () => {
+        try {
+            const response = await axios.post('http://localhost:8800/create-references-table');
+            console.log('Response:', response.data);
+            if (response.data.message) {
+                console.log('Table creation message:', response.data.message);
+            }
+        } catch (error) {
+            console.error('Error creating References table:', error);
+        }
+    };
+
+    // Call the function to create the table
+    createReferencesTable();
+}, []);
   
   
   const textToTranslate = {

@@ -247,6 +247,65 @@ app.get('/random-prompts', async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   });
+
+  app.post('/create-references-table', (req, res) => {
+    const createTableQuery = `
+    CREATE TABLE IF NOT EXISTS \`References\` (
+        \`id\` INT AUTO_INCREMENT PRIMARY KEY,
+        \`username\` VARCHAR(255) NOT NULL,
+        \`reference\` VARCHAR(255) NOT NULL
+    )
+`;
+
+    db.query(createTableQuery, (err, result) => {
+        if (err) {
+            console.error('Error creating References table:', err);
+            return res.status(500).json({ error: 'Error creating References table' });
+        }
+        res.json({ message: 'References table created successfully' });
+    });
+});
+
+app.post('/add-reference', (req, res) => {
+    const { username, reference } = req.body;
+
+    const query = 'INSERT INTO `References` (`username`, `reference`) VALUES (?, ?)';
+    const values = [username, reference];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Error inserting data:', err);
+            res.status(500).json({ error: 'Failed to add reference' });
+            return;
+        }
+        res.json({ message: 'Reference added successfully', data: result });
+    });
+});
+
+app.post('/get-references-by-username', (req, res) => {
+    const { username } = req.body;
+
+    const query = 'SELECT `reference` FROM `References` WHERE `username` = ?';
+    db.query(query, [username], (err, results) => {
+        if (err) {
+            console.error('Error retrieving references:', err);
+            res.status(500).json({ error: 'Failed to retrieve references' });
+            return;
+        }
+
+        // Parse each reference
+        const parsedReferences = results.map(row => {
+            try {
+                return JSON.parse(row.reference);
+            } catch (error) {
+                console.error('Error parsing reference:', error);
+                return null;  // Return null for invalid references
+            }
+        }).filter(ref => ref !== null);  // Filter out null values
+
+        res.json(parsedReferences);  // Send parsed references to the frontend
+    });
+});
   
 //   app.listen(port, () => {
 //     console.log(`Server is running on port ${port}`);

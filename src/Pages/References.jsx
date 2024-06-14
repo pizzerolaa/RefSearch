@@ -9,6 +9,17 @@ import axios from 'axios';
 const References = () => {
     const [translatedText, setTranslatedText] = useState({});
     const [language] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
+    const [references, setReferences] = useState([]);
+
+    const fetchReferences = async () => {
+        try {
+            const username = localStorage.getItem('username');
+            const response = await axios.post('http://localhost:8800/get-references-by-username', { username });
+            setReferences(response.data);
+        } catch (error) {
+            console.error('Error fetching references:', error);
+        }
+    };
 
     const textToTranslate = {
     back: "Atrás",
@@ -34,11 +45,17 @@ const References = () => {
   
   useEffect(() => {
     translateText();
+    fetchReferences();
   }, [language]);
 
   const handleClick = () => {
     window.history.back();
   };
+
+  const parsList = (rawReference) => {
+    const parsedReference = JSON.parser(rawReference);
+    return parsedReference;
+  }
 
     return (
         <div className="references">
@@ -53,54 +70,32 @@ const References = () => {
                 </div>
             </div>
             <div className="references-display">
-                <div className="references-tab">
-                    <div className="references-content">
-                        <Link style={{textDecoration:'none'}} to='/source'>
-                            <h4>Título del artículo</h4>
-                        </Link>
-                        <div className="references-info">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga mollitia distinctio repudiandae numquam eius enim, rerum sequi temporibus debitis dolor repellat saepe rem, minus sint. Quam, dignissimos? Doloremque, facilis rem?</p>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga mollitia distinctio repudiandae numquam eius enim, rerum sequi temporibus debitis dolor repellat saepe rem, minus sint. Quam, dignissimos? Doloremque, facilis rem?</p>
+                {references.map((ref, index) => {
+                    const { title, authors, link, summary, year } = ref;
+                    return (
+                        <div className="references-tab" key={index}>
+                            <div className="references-content">
+                                {link ? (
+                                    <Link to={{ pathname: link }} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                                        <h4>{title}</h4>
+                                    </Link>
+                                ) : (
+                                    <h4>{title}</h4>
+                                )}
+                                <div className="references-info">
+                                    <p><strong>Authors:</strong> {authors.join(', ')}</p>
+                                    <p><strong>Summary:</strong> {summary}</p>
+                                    <p><strong>Year:</strong> {year}</p>
+                                </div>
+                            </div>
+                            <div className="references-ref">
+                                <button>
+                                    <img src={FullRef} alt="Full Reference" />
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="references-ref">
-                        <button>
-                            <img src={FullRef} alt="" />
-                        </button>
-                    </div>
-                </div>
-                <div className="references-tab">
-                    <div className="references-content">
-                        <Link style={{textDecoration:'none'}} to='/source'>
-                            <h4>Título del artículo</h4>
-                        </Link>
-                        <div className="references-info">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga mollitia distinctio repudiandae numquam eius enim, rerum sequi temporibus debitis dolor repellat saepe rem, minus sint. Quam, dignissimos? Doloremque, facilis rem?</p>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga mollitia distinctio repudiandae numquam eius enim, rerum sequi temporibus debitis dolor repellat saepe rem, minus sint. Quam, dignissimos? Doloremque, facilis rem?</p>
-                        </div>
-                    </div>
-                    <div className="references-ref">
-                        <button>
-                            <img src={FullRef} alt="" />
-                        </button>
-                    </div>
-                </div>
-                <div className="references-tab">
-                    <div className="references-content">
-                        <Link style={{textDecoration:'none'}} to='/source'>
-                            <h4>Título del artículo</h4>
-                        </Link>
-                        <div className="references-info">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga mollitia distinctio repudiandae numquam eius enim, rerum sequi temporibus debitis dolor repellat saepe rem, minus sint. Quam, dignissimos? Doloremque, facilis rem?</p>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga mollitia distinctio repudiandae numquam eius enim, rerum sequi temporibus debitis dolor repellat saepe rem, minus sint. Quam, dignissimos? Doloremque, facilis rem?</p>
-                        </div>
-                    </div>
-                    <div className="references-ref">
-                        <button>
-                            <img src={FullRef} alt="" />
-                        </button>
-                    </div>
-                </div>
+                    );
+                })}
             </div>
             <div className="references-copy">
                 <button>

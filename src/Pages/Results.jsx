@@ -1,3 +1,5 @@
+// Results.jsx
+
 import React, { useState, useEffect } from 'react';
 import './styles/Results.css';
 import { Link } from 'react-router-dom';
@@ -12,6 +14,10 @@ const Results = () => {
     const [articles, setArticles] = useState([]);
     const [translatedText, setTranslatedText] = useState({});
     const [language, setLanguage] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
+    const [formData, setFormData] = useState({
+        username: '',
+        reference: ''
+    });
   
     const textToTranslate = {
     references: "Lista de referencias"
@@ -93,8 +99,35 @@ const Results = () => {
                    .replace(/{\\~N}/g, 'Ñ');
     };
 
-    const handleArticleClick = (article) => {
+    const handleArticleClick =  (article) => {
         localStorage.setItem('selectedArticle', JSON.stringify(article));
+    }
+
+    const handleArticleSave = async (article) => {
+        localStorage.setItem('savedArticle', JSON.stringify(article));
+
+        const username = localStorage.getItem('username');
+        const savedArticle = localStorage.getItem('savedArticle');
+
+        const data = {
+            username: username || '',
+            reference: savedArticle || ''
+        };
+
+        setFormData({
+            username: username || '',
+            reference: savedArticle || ''
+        });
+
+        try {
+            const response = await axios.post('http://localhost:8800/add-reference', data);
+            console.log('Response:', response.data);
+            alert('Reference added successfully!');
+            localStorage.removeItem('saveddArticle');  // Optionally clear the saved article
+        } catch (error) {
+            console.error('Error adding reference:', error);
+            alert('Failed to add reference');
+        }
     }
     
     return (
@@ -115,7 +148,7 @@ const Results = () => {
                                 <div className="results-sumary">
                                     <p>{article.summary || 'Not summary available. This might be a recent paper or preprint.'}</p>
                                 </div>
-                                <button>
+                                <button onClick={()=>handleArticleSave(article)}>
                                     <img src={Ref} alt="" />
                                 </button>
                             </div>
