@@ -1,5 +1,5 @@
 import React, { useState , useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./styles/References.css";
 import FullRef from "../Components/Assets/bookmark-full.svg";
 import Back from "../Components/Assets/arrowBack.svg";
@@ -10,6 +10,7 @@ const References = () => {
     const [translatedText, setTranslatedText] = useState({});
     const [language] = useState(localStorage.getItem('LANG')); // Lenguaje por defecto, español en este caso
     const [references, setReferences] = useState([]);
+    const navigate = useNavigate();
 
     const fetchReferences = async () => {
         try {
@@ -25,14 +26,10 @@ const References = () => {
         try {
             const username = localStorage.getItem('username');
 
-            console.log("Busco");
-
             const response = await axios.post('http://localhost:8800/remove-reference', {
                 username,
                 reference: JSON.stringify(reference)  // Convert the object back to a JSON string
             });
-
-            console.log("passed");
 
             if (response.data.message === 'Reference removed successfully') {
                 // Filter out the removed reference from the state
@@ -46,56 +43,50 @@ const References = () => {
     };
 
     const textToTranslate = {
-    back: "Atrás",
-    copy: "Copiar"
+        back: "Atrás",
+        copy: "Copiar"
     };
 
     const translateText = async (textsToTranslate = textToTranslate) => {
-    try {
-      const response = await axios.post('http://localhost:8800/translate', {
-        text: Object.values(textsToTranslate).join('\n'),
-        targetLang: language,
-      });
-      const translations = response.data.translations[0].text.split('\n');
-      const translatedObject = Object.keys(textsToTranslate).reduce((acc, key, index) => {
-        acc[key] = translations[index];
-        return acc;
-      }, {});
-      setTranslatedText(translatedObject);
-    } catch (error) {
-      console.error('Error al traducir:', error);
-    }
-  };
-  
-  useEffect(() => {
-    translateText();
-    fetchReferences();
-  }, [language]);
+        try {
+            const response = await axios.post('http://localhost:8800/translate', {
+                text: Object.values(textsToTranslate).join('\n'),
+                targetLang: language,
+            });
+            const translations = response.data.translations[0].text.split('\n');
+            const translatedObject = Object.keys(textsToTranslate).reduce((acc, key, index) => {
+                acc[key] = translations[index];
+                return acc;
+            }, {});
+            setTranslatedText(translatedObject);
+        } catch (error) {
+            console.error('Error al traducir:', error);
+        }
+    };
 
-  const handleClick = () => {
-    window.history.back();
-  };
+    useEffect(() => {
+        translateText();
+        fetchReferences();
+    }, [language]);
 
-  const changeLink = (article) => {
-    const stringArticle = JSON.stringify(article);
-    localStorage.setItem('selectedArticle',stringArticle);
-  }
+    const handleClick = () => {
+        window.history.back();
+    };
 
-  const parsList = (rawReference) => {
-    const parsedReference = JSON.parser(rawReference);
-    return parsedReference;
-  }
+    const changeLink = (article) => {
+        const stringArticle = JSON.stringify(article);
+        localStorage.setItem('selectedArticle', stringArticle);
+        navigate('/source');
+    };
 
     return (
         <div className="references">
             <div className="references-idioma">
                 <div className="references-idioma-1">
-                    {/* <Link style={{textDecoration:'none'}} > */}
-                        <button onClick={handleClick}>
-                            <img src={Back} alt="" />
-                            <span>{translatedText.back}</span>
-                        </button>
-                    {/* </Link> */}
+                    <button onClick={handleClick}>
+                        <img src={Back} alt="" />
+                        <span>{translatedText.back}</span>
+                    </button>
                 </div>
             </div>
             <div className="references-display">
@@ -105,9 +96,9 @@ const References = () => {
                         <div className="references-tab" key={index}>
                             <div className="references-content">
                                 {link ? (
-                                    <Link to="/source" /**onClick={changeLink(ref)}**/ target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                                    <span onClick={() => changeLink(ref)} style={{ textDecoration: 'none' }}>
                                         <h4>{title}</h4>
-                                    </Link>
+                                    </span>
                                 ) : (
                                     <h4>{title}</h4>
                                 )}
