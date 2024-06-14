@@ -104,6 +104,8 @@ const Results = () => {
     }
 
     const handleArticleSave = async (article) => {
+        localStorage.setItem('savedArticle', JSON.stringify(article));
+        
         const username = localStorage.getItem('username');
         const savedArticle = localStorage.getItem('savedArticle');
     
