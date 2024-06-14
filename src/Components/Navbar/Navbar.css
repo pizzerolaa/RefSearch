@@ -119,7 +119,7 @@ a.menu-item:hover{
 }
 
 .navbar-idioma img {
-    max-width: 30px;
+    max-width: 35px;
     /* padding: 0.5rem; */
     margin-left: 5px;
     margin-right: 5px;
@@ -154,3 +154,4 @@ a.menu-item:hover{
 .navbar-logo p:hover {
     color: white;
 }
+

@@ -6,11 +6,14 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import user from "../Assets/user.svg";
 import userBlue from "../Assets/user-blue.svg";
 import idioma from "../Assets/globe.svg";
+import mexico from "../Assets/bandera.png";
+import usa from "../Assets/usa.png";
 
 const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
     const [isES, setLangBt] = useState("ES");
     const [isLogin, setLogin] = useState(false);
     const userName = localStorage.getItem('username');
+    const [toggled, setToggled] = useState(false);
     
     const searchBarRef = useRef(null);
 
@@ -24,6 +27,7 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
     const handleClick = () => {
         localStorage.setItem('LANG', localStorage.getItem('LANG') === "ES" ? "EN" : "ES");
         window.location.reload();
+        setToggled(!toggled)
     };
 
     const logout = () => {
@@ -87,12 +91,12 @@ const Navbar = ({ onNavbarButtonClick, sharedVariable, setSharedVariable}) => {
                     {userLogged()}
                     <div className="navbar-idioma" onClick={handleClick}>
                         {<button id='navbar-idioma'>
-                            <img src={idioma} alt="" />
-                            <p>{localStorage.getItem('LANG') === "ES" ? 'English' : 'Español'}</p>
+                            
+                            {localStorage.getItem('LANG') === "ES" ? <img src={usa} alt="" /> : <img src={mexico} alt="" />}
+                            {localStorage.getItem('LANG') === "ES" ? "EN" : "ES"}
                         </button>}
                     </div>
-
-                    {/* <button onClick={handleBarClick}>Navbar Button</button> */}
+                    
                     
 
                 </div>
