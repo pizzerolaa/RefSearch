@@ -71,6 +71,31 @@ const SearchBar = ({sharedVariable}) => {
     }
   };
 
+  const [randomPrompts, setRandomPrompts] = useState([]);
+
+  const fetchPrompts = async () => {
+    try {
+        const response = await axios.get('http://localhost:8800/prompts');
+        const prompts = response.data.prompts;
+        const randomPrompts = [];
+
+        while (randomPrompts.length < 3) {
+            const randomIndex = Math.floor(Math.random() * prompts.length);
+            const prompt = prompts[randomIndex];
+            if(!randomPrompts.includes(prompt)) {
+                randomPrompts.push(prompt);
+            }
+        }
+
+        setRandomPrompts(randomPrompts);
+    } catch (error) {
+        console.error('Error fetching prompts:', error);
+    }
+}
+
+  useEffect(() => {
+      fetchPrompts();
+  }, []);
 
   return (
     <div className="searchBar">
@@ -111,11 +136,9 @@ const SearchBar = ({sharedVariable}) => {
           <button>{translatedText.disc}</button>
 
           <div className='rf-second-buttons'>
-            <Link style={{textDecoration:'none'}} to='/prompts'>
-              <button>{translatedText.idea1}</button>
-              <button>{translatedText.idea2}</button>
-              <button>{translatedText.idea3}</button>
-            </Link>
+            {randomPrompts.map((prompt, index) => (
+              <button key={index}>{prompt}</button>
+            ))}
           </div>
         </div>
       </div>
