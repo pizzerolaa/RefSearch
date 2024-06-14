@@ -80,7 +80,7 @@ def search_with_fallback(query):
         #app.logger.info(f"Found article: {title}")
     if not results:
         app.logger.info("No results found for the original query. Performing broader search.")
-        broader_query = ' '.join(query.split()[:4])
+        broader_query = ' '.join(query.split()[:5])
         results = search_with_fallback(broader_query)
     return results
 

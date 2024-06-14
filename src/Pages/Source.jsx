@@ -29,6 +29,7 @@ const Source = () => {
         }
     };
 
+
     return (
         <div className="source">
             <div className="source-idioma">
@@ -56,15 +57,11 @@ const Source = () => {
                 </div>
                 <h3><strong>REFERENCIA:</strong></h3>
                 <h3> {article.title}. ({article.year || 's.f.'}). {article.authors.join(', ') || 'Unknown Author'}. {article.link}</h3>
+
                 <div className="source-tab-buttons">
                     <button onClick={handleViewMoreClick}>
                         <span>Ver más</span>
                     </button>
-                    <Link style={{textDecoration:'none'}} to='/chat'>
-                        <button>
-                            <span>Chat</span>
-                        </button>
-                    </Link>
                 </div>
             </div>
             <div className="source-idioma">
