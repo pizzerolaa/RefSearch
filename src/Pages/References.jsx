@@ -118,10 +118,10 @@ const References = () => {
                 })}
             </div>
             <div className="references-copy">
-                <button>
+                {/* <button>
                     <span>{translatedText.copy}</span>
                     <img src={Copy} alt="" />            
-                </button>
+                </button> */}
             </div>
         </div>
     );
