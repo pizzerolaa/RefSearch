@@ -236,10 +236,10 @@ app.get('/random-prompts', async (req, res) => {
       );
   
       const content = response.data.choices[0].message.content.trim();
-    const generatedPrompts = content.split('\n').map(prompt => {
-      // Elimina los números, puntos, guiones y comillas al inicio y final de cada prompt
-      return prompt.replace(/^\d+\.?\s*-?\s*"|"$/g, '').trim();
-    }).filter(prompt => prompt !== ''); // Elimina cualquier línea vacía
+      const generatedPrompts = content.split('\n').map(prompt => {
+        
+        return prompt.replace(/^\d+\.?\s*-?\s*"|"$/g, '').trim();
+      }).filter(prompt => prompt !== '');
 
     res.json({ prompts: generatedPrompts });
     } catch (error) {

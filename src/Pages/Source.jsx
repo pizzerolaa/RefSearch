@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Toaster, toast } from "react-hot-toast";
 import "./styles/Source.css";
 import Globe from "../Components/Assets/globe-beish.svg";
 import Ref from "../Components/Assets/bookmark.svg";
@@ -27,6 +29,10 @@ const Source = () => {
             const cleanedLink = article.link.replace(/['"]+/g, '');
             window.open(cleanedLink, '_blank');
         }
+    };
+
+    const handleReferenceClick = () => {
+        return `${article.title}. (${article.year || 's.f.'}). ${article.authors.join(', ') || 'Unknown Author'}. ${article.link}`;
     };
 
 
@@ -61,6 +67,12 @@ const Source = () => {
                 <div className="source-tab-buttons">
                     <button onClick={handleViewMoreClick}>
                         <span>Ver más</span>
+                    </button>
+                    <button>
+                        <CopyToClipboard text={handleReferenceClick()}>
+                            <span onClick={() => toast('Copiado al portapapeles', {position: "top-center"})} style={{textAlign: "center"}}>Referencia</span>
+                        </CopyToClipboard>
+                        <Toaster />
                     </button>
                 </div>
             </div>
