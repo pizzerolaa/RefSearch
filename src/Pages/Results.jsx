@@ -93,7 +93,9 @@ const Results = () => {
             .replace(/{\\'I}/g, 'Í')
             .replace(/{\\'O}/g, 'Ó')
             .replace(/{\\'U}/g, 'Ú')
-            .replace(/{\\~N}/g, 'Ñ');
+            .replace(/{\\~N}/g, 'Ñ')
+            .replace(/{\\"u}/g, 'ü')
+            .replace(/{\\"U}/g, 'Ü');
     };
 
     const handleArticleClick = (article) => {

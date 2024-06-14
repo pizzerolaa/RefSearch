@@ -4,6 +4,7 @@ const mysql = require('mysql');
 const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
 require('dotenv').config()
 
@@ -37,16 +38,12 @@ app.get('/' , (req, res) => {
 
 app.post('/login', (req, res) => {
     console.log("Iniciando login");
-    
-    const values = [
-        req.body.username,
-        req.body.password
-    ];
+
+    const { username, password } = req.body;
 
     const q = 'SELECT * FROM login WHERE username = ?';
-    
-    db.query(q, values[0], (err, results) => {
 
+    db.query(q, username, async (err, results) => {
         console.log("Iniciando query");
 
         if (err) {
@@ -63,8 +60,9 @@ app.post('/login', (req, res) => {
 
         // Comparar la contraseña proporcionada con la almacenada en la base de datos
         const user = results[0];
+        const passwordMatch = await bcrypt.compare(password, user.password);
 
-        if (user.password !== values[1]) {
+        if (!passwordMatch) {
             // Contraseña incorrecta
             res.status(400).json({ error: 'Contraseña incorrecta' });
             console.log("incorrecta");
@@ -76,16 +74,12 @@ app.post('/login', (req, res) => {
     });
 });
 
-app.post('/register', (req, res) => {
-    const q = 'INSERT INTO login (`username`, `password`) VALUES (?)';
-    const values = [
-        req.body.username,
-        req.body.password
-    ];
+app.post('/register', async (req, res) => {
+    const { username, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10); // Hashear la contraseña
 
     const checkEmailSql = 'SELECT * FROM login WHERE username = ?';
-    db.query(checkEmailSql, values[0], (err, results) => {
-        console.log(values[0]);
+    db.query(checkEmailSql, username, (err, results) => {
         if (err) {
             console.log("error1");
             res.status(400).json({ error: err.message });
@@ -98,15 +92,16 @@ app.post('/register', (req, res) => {
             return;
         }
 
-        db.query(q, [values], (err, data) => {
+        const q = 'INSERT INTO login (`username`, `password`) VALUES (?, ?)';
+        db.query(q, [username, hashedPassword], (err, data) => { // Guardar la contraseña hasheada
             console.log("entro a push");
             if (err) {
                 console.log(err);
             } else {
                 res.json("Account add successfully");
             }
-        })
-    })
+        });
+    });
 });
 
 let storedPrompts_1 = [];
