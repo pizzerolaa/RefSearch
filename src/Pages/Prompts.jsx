@@ -54,6 +54,7 @@ const Prompts = () => {
         try {
             console.log('Selected prompt:', prompt);
             localStorage.setItem('selectedPrompt', prompt);
+            window.alert('Buscando artículos académicos...');
             const response = await axios.get('http://localhost:8800/scholarlyy', {
                 params: {q: prompt}
             });
