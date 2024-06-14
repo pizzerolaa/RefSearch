@@ -261,7 +261,7 @@ app.get('/random-prompts', async (req, res) => {
     CREATE TABLE IF NOT EXISTS \`References\` (
         \`id\` INT AUTO_INCREMENT PRIMARY KEY,
         \`username\` VARCHAR(255) NOT NULL,
-        \`reference\` VARCHAR(255) NOT NULL
+        \`reference\` TEXT NOT NULL
     )
 `;
 

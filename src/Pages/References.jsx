@@ -21,6 +21,26 @@ const References = () => {
         }
     };
 
+    const handleRemoveReference = async (reference) => {
+        try {
+            const username = localStorage.getItem('username');
+
+            const response = await axios.post('http://localhost:8800/remove-reference', {
+                username,
+                reference: JSON.stringify(reference)  // Convert the object back to a JSON string
+            });
+
+            if (response.data.message === 'Reference removed successfully') {
+                // Filter out the removed reference from the state
+                setReferences(prevReferences => prevReferences.filter(ref => JSON.stringify(ref) !== JSON.stringify(reference)));
+            } else {
+                console.error(response.data.message);
+            }
+        } catch (error) {
+            console.error('Error removing reference:', error);
+        }
+    };
+
     const textToTranslate = {
     back: "Atrás",
     copy: "Copiar"
@@ -52,6 +72,11 @@ const References = () => {
     window.history.back();
   };
 
+  const changeLink = (article) => {
+    const stringArticle = JSON.stringify(article);
+    localStorage.setItem('selectedArticle',stringArticle);
+  }
+
   const parsList = (rawReference) => {
     const parsedReference = JSON.parser(rawReference);
     return parsedReference;
@@ -76,7 +101,7 @@ const References = () => {
                         <div className="references-tab" key={index}>
                             <div className="references-content">
                                 {link ? (
-                                    <Link to={{ pathname: link }} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                                    <Link to="/source" onClick={changeLink(ref)} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                                         <h4>{title}</h4>
                                     </Link>
                                 ) : (
@@ -89,7 +114,7 @@ const References = () => {
                                 </div>
                             </div>
                             <div className="references-ref">
-                                <button>
+                                <button onClick={() => handleRemoveReference(ref)}>
                                     <img src={FullRef} alt="Full Reference" />
                                 </button>
                             </div>
