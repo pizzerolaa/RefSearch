@@ -16,6 +16,10 @@ Es necesario contar con Node JS instalado en su equipo para iniciar tanto la vis
 
 También es necesario contar con algún servicio o sistema de gestión de bases de datos, alojado localmente en tu equipo. En caso de este proyecto, será necesario que puede correr MySQL. Para esto nosotros recomendamos XAMPP que se puede encontrar en el siguiente enlace: [XAMPP Installers and Downloads](https://www.apachefriends.org/es/index.html).
 
+### Python
+
+(texto)
+
 ## Ejecutar el Proyecto
 
 ### Clonar el repositorio locamente
@@ -48,8 +52,20 @@ Por último, damos en "Importar" al final de la página.
 
 Completo lo anterior, en la terminal de tu preferencia ubícate en la carpeta fuente del repositorio clonado y ejecuta los siguientes comandos:
 
-- `npm i`: Instala las dependencias del proyecto.
+- `npm i`: Instala las dependencias externas del proyecto.
 
-- `npm start`: Inicia el servidor de Express.
+- `npm start`: Inicia la aplicación de REACT.
+
+Ahora, entra a la carpeta de 'backend' con ayuda `cd .\backend\` y ejecuta:
+
+- `npm i`: Instala las dependencias internas del proyecto.
+
+- `node index.js`: Inicia el servidor de Express.
+
+Por último, regresa a la ruta principal con `cd ..` y entra a la carpeta `cd .\API` para ejecutar la Api de Búsqueda alojada en Python:
+
+- Puedes ejecutarlo directamente de tu IDE de preferencia o...
+
+- Utilizar el comando `& ./.venv/Scripts/python.exe ./RefSearch/API/scholarly_api.py` (en Windows) desde una terminal justo afuera de la carpeta del proyecto.
 
 Terminado esto, la página estará lista para su uso.
