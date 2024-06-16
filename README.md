@@ -2,7 +2,7 @@
 
 ## Descripción
 
-(texto)
+RefSearch, tiene como propósito el mejoramiento de la calidad de información y recursos digitales a los que los alumnos, docentes y personal de instituciones académicas puedan acceder para realizar los diversos trabajos y entregables de investigación que les sean asignados. Asimismo, pretende eficientar los tiempos en los que se lleva a cabo esta búsqueda, implementando una herramienta que funcione de forma conjunta con la API de google academics, y que haga un despliegue de forma intuitiva de las 5 principales fuentes de información disponibles.
 
 ## Requerimientos
 
@@ -64,7 +64,7 @@ Ahora, entra a la carpeta de 'backend' con ayuda `cd .\backend\` y ejecuta:
 
 Por último, regresa a la ruta principal con `cd ..` y entra a la carpeta `cd .\API` para ejecutar la Api de Búsqueda alojada en Python:
 
-- Puedes ejecutarlo directamente de tu IDE de preferencia o...
+- Puedes ejecutarlo directamente (recomendable) de tu IDE de preferencia (sugerimos VSCode) o...
 
 - Utilizar el comando `& ./.venv/Scripts/python.exe ./RefSearch/API/scholarly_api.py` (en Windows) desde una terminal justo afuera de la carpeta del proyecto.
 
