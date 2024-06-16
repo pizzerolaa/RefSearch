@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# RefSearch: "Explora con Confianza, Investiga con Facilidad"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripción
 
-## Available Scripts
+(texto)
 
-In the project directory, you can run:
+## Requerimientos
 
-### `npm start`
+Para poder iniciar y correr lo contenido en este repositorio, será necesario contar ciertos programas y dependencias, los cuales se enlistan a continuación...
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Node JS
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Es necesario contar con Node JS instalado en su equipo para iniciar tanto la visualización de la página como el servidor de esta. Para ello accede a la siguiente dirección [Download Node JS](https://nodejs.org/en/download/package-manager), y después de elegir de las distintas opciones la que más te convenga, sigue las instrucciones ahí descritas.
 
-### `npm test`
+### Servicio local de Base de Datos 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+También es necesario contar con algún servicio o sistema de gestión de bases de datos, alojado localmente en tu equipo. En caso de este proyecto, será necesario que puede correr MySQL. Para esto nosotros recomendamos XAMPP que se puede encontrar en el siguiente enlace: [XAMPP Installers and Downloads](https://www.apachefriends.org/es/index.html).
 
-### `npm run build`
+## Ejecutar el Proyecto
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Clonar el repositorio locamente
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Como primer paso debemos clonar este repositorio localmente con la ayuda del comando...
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `git clone https://github.com/pizzerolaa/RefSearch.git`
 
-### `npm run eject`
+..., ejecutándolo en la terminal de tu preferencia, dentro el directorio donde quieras que se ubiquen alojados los archivos de la aplicación. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Configurar la Base de Datos
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Después de haber clonado el repositorio, necesitamos importar la base de datos al sistema de gestión. Para ello primero abre XAMPP o la aplicación de tu predferencia y asegúrate de que los servicios de Apache y MySQL se encuentren en correcto funcionamiento, como se muestra en la imagen:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![image](https://github.com/pizzerolaa/Aplicacion-MVC/assets/128638772/a82ba355-6b8a-4f82-a11c-e194d3ff97a9)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Posteriormente, ingresamos al panel de administración de MySQL, mediante el botón 'Admin' resaltado. Dentro, en el panel del lateral izquierdo seleccionamos la opción de "Nueva" y crearemos una nueva base de dato llamada 'refsear'. Luego daremos click en "Crear".
 
-## Learn More
+![image](https://github.com/Checo894/ArquitecturaMicroServiciosLLM/assets/128638772/7e641adb-6f01-458c-b4da-bea0714196ba)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Una vez creadas, en la barra superior seleccionamos "Importar" y seleccionamos el archivo 'RefSear.sql' ubicado en la carpeta SRC del repositorio recién clonado.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image](https://github.com/Checo894/ArquitecturaMicroServiciosLLM/assets/128638772/d3762390-b9f5-40b7-a987-f93cb18b7228)
 
-### Code Splitting
+Por último, damos en "Importar" al final de la página.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![image](https://github.com/pizzerolaa/Aplicacion-MVC/assets/128638772/a1fc1d23-d6eb-4cd7-8a24-b64d7571ba54)
 
-### Analyzing the Bundle Size
+### Correr localmente la aplicación
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Completo lo anterior, en la terminal de tu preferencia ubícate en la carpeta fuente del repositorio clonado y ejecuta los siguientes comandos:
 
-### Making a Progressive Web App
+- `npm i`: Instala las dependencias del proyecto.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `npm start`: Inicia el servidor de Express.
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Terminado esto, la página estará lista para su uso.
