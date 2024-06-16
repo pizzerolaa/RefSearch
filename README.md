@@ -18,7 +18,9 @@ También es necesario contar con algún servicio o sistema de gestión de bases 
 
 ### Python
 
-(texto)
+Para ejecutar ciertos scripts y manejar la lógica de búsqueda avanzada, es necesario tener instalado Python en su equipo. Para ello, acceda a la siguiente dirección [Download Python](https://www.python.org/downloads/), elija la versión más reciente compatible con su sistema operativo y siga las instrucciones de instalación.
+
+IDE Recomendado: Para el desarrollo y edición de código en en general, se recomienda utilizar Visual Studio Code (VSCode), que se puede descargar en el siguiente enlace: [Download VSCode](https://code.visualstudio.com/Download). Una vez con esto, puede instalar la extensión oficial de Python para VSCode, la cual facilita la depuración, ejecución y formateo del código Python. Esta extensión se puede encontrar en el [Marketplace de Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 
 ## Ejecutar el Proyecto
 
