@@ -66,6 +66,6 @@ Por último, regresa a la ruta principal con `cd ..` y entra a la carpeta `cd .\
 
 - Puedes ejecutarlo directamente (recomendable) de tu IDE de preferencia (sugerimos VSCode) o...
 
-- Utilizar el comando `& ./.venv/Scripts/python.exe ./RefSearch/API/scholarly_api.py` (en Windows) desde una terminal justo afuera de la carpeta del proyecto.
+- Utilizar el comando `& ./.venv/Scripts/python.exe ./RefSearch/API/scholarly_api.py` (en Windows) desde una terminal justo afuera de la carpeta del proyecto. Es decir, si te encuentras en `c:\...\RefSearch\API>` cambia a `c:\...>` los '...' representando la ruta de tu equipo donde está el proyecto.
 
 Terminado esto, la página estará lista para su uso.
